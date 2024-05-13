@@ -39,5 +39,13 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `YOUR_CONTENTFUL_SPACE_ID`,
+        accessToken: `YOUR_CONTENTFUL_ACCESS_TOKEN`,
+      },
+    },
+    // TO DO: Add token and ID
   ],
 }
