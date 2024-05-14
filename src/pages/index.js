@@ -1,12 +1,20 @@
+import { Box, Card, Container, Stack, Typography } from "@mui/material"
 import * as React from "react"
-const IndexPage = () => (
-  <>
-    <h1>Easy Routine</h1>
+import NavBar from "../components/NavBar"
+import CardComponentTraining from "../components/CardComponentTraining"
+import CardComponentRecepies from "../components/CardComponentRecepies"
+import CardComponentBooking from "../components/CardComponentBooking"
+import Footer from "../components/Footer"
 
-    <p>Välkommen till Easy Routine - Appen som hjälper dig planera vardagen</p>
-    <p>Recept</p>
-    <p>Träning</p>
-    <p>Schema</p>
-  </>
+const IndexPage = () => (
+  <Container>
+    <NavBar />
+    <Stack direction={{ xs: "column", md: "row" }} gap={2} my={2}>
+      <CardComponentRecepies />
+      <CardComponentTraining />
+      <CardComponentBooking />
+    </Stack>
+    <Footer />
+  </Container>
 )
 export default IndexPage
