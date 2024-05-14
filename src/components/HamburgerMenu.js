@@ -27,7 +27,7 @@ export default function BasicPopover() {
   return (
     <div>
       <IconButton aria-describedby={id} onClick={handleClick}>
-        <MenuIcon color="white" />
+        <MenuIcon sx={{ color: "white" }} />
       </IconButton>
       <Popover
         id={id}

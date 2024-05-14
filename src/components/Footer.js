@@ -16,7 +16,7 @@ import HamburgerMenu from "../components/HamburgerMenu"
 export default function NavBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ backgroundColor: "#063970" }}>
         <Toolbar sx={{ display: "flex", justifyContent: "center" }}>
           <Typography color="inherit">Powerd by Sandra Jakobsson</Typography>
         </Toolbar>
