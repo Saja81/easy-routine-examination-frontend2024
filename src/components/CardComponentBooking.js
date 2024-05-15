@@ -29,6 +29,7 @@ export default function CardComponentBooking() {
         <CardActions>
           <Link to="/BookingApp">
             <Button
+              className="button-link"
               size="small"
               sx={{ border: " solid 2px #ffc451", color: "#063970" }}
             >

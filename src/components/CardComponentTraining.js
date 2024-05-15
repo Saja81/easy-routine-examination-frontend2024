@@ -29,6 +29,7 @@ export default function CardComponentTraining() {
         <CardActions>
           <Link to="/TrainingApp">
             <Button
+              className="button-link"
               size="small"
               sx={{ border: " solid 2px #063970", color: "#063970" }}
             >

@@ -14,7 +14,7 @@ import AppRegistrationIcon from "@mui/icons-material/AppRegistration"
 import MenuIcon from "@mui/icons-material/Menu"
 import NavBarLinks from "./NavBarLinks"
 import { Link } from "gatsby"
-import "./NavBar.css"
+
 import { useState } from "react"
 
 export default function NavBar() {
@@ -34,7 +34,7 @@ export default function NavBar() {
             justifyContent: "space-between",
           }}
         >
-          <Link className="nav-link" to="/">
+          <Link className="loggo-link" to="/">
             <Box display="flex" direction="row">
               <IconButton
                 size="large"

@@ -29,6 +29,7 @@ export default function CardComponentRecepies() {
         <CardActions>
           <Link to="/RecepiesApp">
             <Button
+              className="button-link"
               size="small"
               sx={{
                 border: " solid 2px #59a12f",

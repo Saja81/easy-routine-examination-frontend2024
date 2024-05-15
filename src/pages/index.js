@@ -5,6 +5,7 @@ import CardComponentTraining from "../components/CardComponentTraining"
 import CardComponentRecepies from "../components/CardComponentRecepies"
 import CardComponentBooking from "../components/CardComponentBooking"
 import Footer from "../components/Footer"
+import "../styles/index.css"
 
 const App = () => (
   <Container>
