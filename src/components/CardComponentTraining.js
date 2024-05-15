@@ -7,24 +7,7 @@ import {
   Button,
   Typography,
 } from "@mui/material"
-
-const card = (
-  <React.Fragment>
-    <CardContent>
-      <Typography variant="h5" component="div">
-        Älskling, Ska vi träna sen?
-      </Typography>
-    </CardContent>
-    <CardActions>
-      <Button
-        size="small"
-        sx={{ border: " solid 2px #063970", color: "#063970" }}
-      >
-        Träna
-      </Button>
-    </CardActions>
-  </React.Fragment>
-)
+import { Link } from "gatsby"
 
 export default function OutlinedCard() {
   return (
@@ -38,7 +21,21 @@ export default function OutlinedCard() {
           },
         }}
       >
-        {card}
+        <CardContent>
+          <Typography variant="h6" component="div">
+            Älskling, Ska vi träna sen?
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Link to="/TrainingApp">
+            <Button
+              size="small"
+              sx={{ border: " solid 2px #063970", color: "#063970" }}
+            >
+              Träna
+            </Button>
+          </Link>
+        </CardActions>
       </Card>
     </Box>
   )
