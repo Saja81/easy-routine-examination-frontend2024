@@ -6,6 +6,7 @@ import CardComponentRecepies from "../components/CardComponentRecepies"
 import CardComponentBooking from "../components/CardComponentBooking"
 import Footer from "../components/Footer"
 import "../styles/index.css"
+import { Link } from "gatsby"
 
 const App = () => (
   <Container>
@@ -13,13 +14,21 @@ const App = () => (
     {/* <Stack direction={{ xs: "column", md: "row" }} gap={2} my={2}> */}
     <Grid container spacing={2} my={2}>
       <Grid item xs={12} md={4}>
-        <CardComponentRecepies />
+        <Link to="/RecepiesApp">
+          <CardComponentRecepies />
+        </Link>
       </Grid>
+
       <Grid item xs={12} md={4}>
-        <CardComponentTraining />
+        <Link to="/TrainingApp">
+          <CardComponentTraining />
+        </Link>
       </Grid>
+
       <Grid item xs={12} md={4}>
-        <CardComponentBooking />
+        <Link to="/BookingApp">
+          <CardComponentBooking />
+        </Link>
       </Grid>
     </Grid>
     {/* </Stack> */}

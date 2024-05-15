@@ -7,7 +7,6 @@ import {
   CardContent,
   Typography,
 } from "@mui/material"
-import { Link } from "gatsby"
 
 export default function CardComponentRecepies() {
   return (
@@ -27,18 +26,16 @@ export default function CardComponentRecepies() {
           </Typography>
         </CardContent>
         <CardActions>
-          <Link to="/RecepiesApp">
-            <Button
-              className="button-link"
-              size="small"
-              sx={{
-                border: " solid 2px #59a12f",
-                color: "#063970",
-              }}
-            >
-              Ät
-            </Button>
-          </Link>
+          <Button
+            className="button-link"
+            size="small"
+            sx={{
+              border: " solid 2px #59a12f",
+              color: "#063970",
+            }}
+          >
+            Ät
+          </Button>
         </CardActions>
       </Card>
     </Box>

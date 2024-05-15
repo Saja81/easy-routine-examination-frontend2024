@@ -7,7 +7,6 @@ import {
   Button,
   Typography,
 } from "@mui/material"
-import { Link } from "gatsby"
 
 export default function CardComponentTraining() {
   return (
@@ -27,15 +26,13 @@ export default function CardComponentTraining() {
           </Typography>
         </CardContent>
         <CardActions>
-          <Link to="/TrainingApp">
-            <Button
-              className="button-link"
-              size="small"
-              sx={{ border: " solid 2px #063970", color: "#063970" }}
-            >
-              Träna
-            </Button>
-          </Link>
+          <Button
+            className="button-link"
+            size="small"
+            sx={{ border: " solid 2px #063970", color: "#063970" }}
+          >
+            Träna
+          </Button>
         </CardActions>
       </Card>
     </Box>

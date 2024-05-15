@@ -7,7 +7,6 @@ import {
   CardContent,
   Typography,
 } from "@mui/material"
-import { Link } from "gatsby"
 
 export default function CardComponentBooking() {
   return (
@@ -27,15 +26,13 @@ export default function CardComponentBooking() {
           </Typography>
         </CardContent>
         <CardActions>
-          <Link to="/BookingApp">
-            <Button
-              className="button-link"
-              size="small"
-              sx={{ border: " solid 2px #ffc451", color: "#063970" }}
-            >
-              Boka
-            </Button>
-          </Link>
+          <Button
+            className="button-link"
+            size="small"
+            sx={{ border: " solid 2px #ffc451", color: "#063970" }}
+          >
+            Boka
+          </Button>
         </CardActions>
       </Card>
     </Box>
