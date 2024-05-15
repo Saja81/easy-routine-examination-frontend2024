@@ -1,5 +1,5 @@
 import * as React from "react"
-// import { useState } from "react"
+
 import {
   AppBar,
   Box,
@@ -12,7 +12,7 @@ import {
 
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration"
 import MenuIcon from "@mui/icons-material/Menu"
-import HamburgerMenu from "../components/HamburgerMenu"
+import NavBarLinks from "./NavBarLinks"
 import { Link } from "gatsby"
 import "./NavBar.css"
 import { useState } from "react"
@@ -66,15 +66,7 @@ export default function NavBar() {
             </Box>
           </Link>
           <Stack display={{ xs: "none", md: "flex" }} direction="row" gap={2}>
-            <Link className="nav-link" to="/RecepiesApp">
-              <Typography color="inherit">Recept</Typography>
-            </Link>
-            <Link className="nav-link" to="/TrainingApp">
-              <Typography color="inherit">Träningspass</Typography>
-            </Link>
-            <Link className="nav-link" to="/BookingApp">
-              <Typography color="inherit">Boka skjuts</Typography>
-            </Link>
+            <NavBarLinks />
           </Stack>
           <Box display={{ xs: "flex", md: "none" }}>
             <IconButton onClick={handleMenuClick}>
@@ -91,21 +83,7 @@ export default function NavBar() {
               p={2}
               sx={{ backgroundColor: "#063970" }}
             >
-              <Link className="nav-link" to="/RecepiesApp">
-                <Typography variant="body1" color="inherit">
-                  Recept
-                </Typography>
-              </Link>
-              <Link className="nav-link" to="/TrainingApp">
-                <Typography variant="body1" color="inherit">
-                  Träningspass
-                </Typography>
-              </Link>
-              <Link className="nav-link" to="/BookingApp">
-                <Typography variant="body1" color="inherit">
-                  Boka skjuts
-                </Typography>
-              </Link>
+              <NavBarLinks />
             </Stack>
           </>
         )}

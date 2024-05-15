@@ -9,9 +9,9 @@ import {
 } from "@mui/material"
 import { Link } from "gatsby"
 
-export default function OutlinedCard() {
+export default function CardComponentTraining() {
   return (
-    <Box sx={{ minWidth: 275 }}>
+    <Box>
       <Card
         variant="outlined"
         sx={{

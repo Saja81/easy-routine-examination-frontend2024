@@ -11,7 +11,7 @@ import { Link } from "gatsby"
 
 export default function CardComponentRecepies() {
   return (
-    <Box sx={{ minWidth: 275 }}>
+    <Box>
       <Card
         variant="outlined"
         sx={{
