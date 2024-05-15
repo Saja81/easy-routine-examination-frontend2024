@@ -9,6 +9,29 @@
  */
 module.exports = {
   siteMetadata: {
+    title: `Eaasy Routine`,
+    siteUrl: `https://www.yourdomain.tld`,
+    menuLinks: [
+      {
+        name: "Home",
+        link: "/",
+      },
+      {
+        name: "Recept",
+        link: "/RecepiesApp",
+      },
+      {
+        name: "Träningspass",
+        link: "/TrainingApp",
+      },
+      {
+        name: "Boka skjuts",
+        link: "/BookingApp",
+      },
+    ],
+  },
+
+  siteMetadata: {
     title: `Gatsby Default Starter`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,

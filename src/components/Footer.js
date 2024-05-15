@@ -1,17 +1,5 @@
 import * as React from "react"
-import {
-  AppBar,
-  Box,
-  Button,
-  IconButton,
-  Stack,
-  Toolbar,
-  Typography,
-} from "@mui/material"
-
-import AppRegistrationIcon from "@mui/icons-material/AppRegistration"
-
-import HamburgerMenu from "../components/HamburgerMenu"
+import { AppBar, Box, Toolbar, Typography } from "@mui/material"
 
 export default function NavBar() {
   return (

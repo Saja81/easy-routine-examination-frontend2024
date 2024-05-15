@@ -1,14 +1,9 @@
 import * as React from "react"
-import {
-  Box,
-  Button,
-  IconButton,
-  Popover,
-  Stack,
-  Typography,
-} from "@mui/material"
+import { IconButton, Popover, Stack, Typography } from "@mui/material"
 
 import MenuIcon from "@mui/icons-material/Menu"
+import { Link } from "gatsby"
+import "./NavBar.css"
 
 export default function BasicPopover() {
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -40,9 +35,15 @@ export default function BasicPopover() {
         }}
       >
         <Stack p={2} gap={2}>
-          <Typography color="inherit">Recept</Typography>
-          <Typography color="inherit">Träningspass</Typography>
-          <Typography color="inherit">Boka skjuts</Typography>
+          <Link className="nav-link-ham" to="/RecepiesApp">
+            <Typography color="inherit">Recept</Typography>
+          </Link>
+          <Link className="nav-link-ham" to="/TrainingApp">
+            <Typography color="inherit">Träningspass</Typography>
+          </Link>
+          <Link className="nav-link-ham" to="/BookingApp">
+            <Typography color="inherit">Boka skjuts</Typography>
+          </Link>
         </Stack>
       </Popover>
     </div>
