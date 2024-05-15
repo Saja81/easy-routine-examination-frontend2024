@@ -6,7 +6,7 @@ export default function NavBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: "#063970" }}>
         <Toolbar sx={{ display: "flex", justifyContent: "center" }}>
-          <Typography color="inherit">Powerd by Sandra Jakobsson</Typography>
+          <Typography color="inherit">&copy; 2024 Sandra Jakobsson</Typography>
         </Toolbar>
       </AppBar>
     </Box>
