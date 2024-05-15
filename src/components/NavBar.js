@@ -12,6 +12,7 @@ import {
 
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration"
 import MenuIcon from "@mui/icons-material/Menu"
+import CloseIcon from "@mui/icons-material/Close"
 import NavBarLinks from "./NavBarLinks"
 import { Link } from "gatsby"
 
@@ -69,9 +70,16 @@ export default function NavBar() {
             <NavBarLinks />
           </Stack>
           <Box display={{ xs: "flex", md: "none" }}>
-            <IconButton onClick={handleMenuClick}>
-              <MenuIcon sx={{ color: "white" }} />
-            </IconButton>
+            {isMenuOpen ? (
+              <IconButton onClick={handleMenuClick}>
+                <CloseIcon sx={{ color: "white" }} />
+              </IconButton>
+            ) : (
+              <IconButton onClick={handleMenuClick}>
+                {/* Visa din ursprungliga ikon */}
+                <MenuIcon sx={{ color: "white" }} />
+              </IconButton>
+            )}
           </Box>
         </Toolbar>
         {isMenuOpen && (

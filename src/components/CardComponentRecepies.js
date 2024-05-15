@@ -14,14 +14,15 @@ export default function CardComponentRecepies() {
       <Card
         variant="outlined"
         sx={{
+          bgcolor: "#209330",
           boxShadow: "4px 4px 4px rgba(0, 0, 0, 0.1)",
           "&:hover": {
-            backgroundColor: "#f0f0f0",
+            backgroundColor: "#067916",
           },
         }}
       >
         <CardContent>
-          <Typography variant="h6" component="div">
+          <Typography color="white" variant="h6" component="div">
             Vad f**n ska vi äta till middag?
           </Typography>
         </CardContent>
@@ -30,8 +31,8 @@ export default function CardComponentRecepies() {
             className="button-link"
             size="small"
             sx={{
-              border: " solid 2px #59a12f",
-              color: "#063970",
+              border: " solid 1px white",
+              color: "white",
             }}
           >
             Ät

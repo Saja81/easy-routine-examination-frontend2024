@@ -6,6 +6,9 @@ import { Link } from "gatsby"
 export default function NavBarLinks() {
   return (
     <>
+      <Link className="nav-link" to="/">
+        <Typography color="inherit">Hem</Typography>
+      </Link>
       <Link className="nav-link" to="/RecepiesApp">
         <Typography color="inherit">Recept</Typography>
       </Link>

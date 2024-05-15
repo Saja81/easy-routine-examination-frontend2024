@@ -14,14 +14,15 @@ export default function CardComponentTraining() {
       <Card
         variant="outlined"
         sx={{
+          bgcolor: "#c61010",
           boxShadow: "4px 4px 4px rgba(0, 0, 0, 0.1)",
           "&:hover": {
-            backgroundColor: "#f0f0f0",
+            backgroundColor: "#AD0000",
           },
         }}
       >
         <CardContent>
-          <Typography variant="h6" component="div">
+          <Typography color="white" variant="h6" component="div">
             Älskling, Ska vi träna sen?
           </Typography>
         </CardContent>
@@ -29,7 +30,10 @@ export default function CardComponentTraining() {
           <Button
             className="button-link"
             size="small"
-            sx={{ border: " solid 2px #063970", color: "#063970" }}
+            sx={{
+              border: " solid 1px white",
+              color: "white",
+            }}
           >
             Träna
           </Button>
