@@ -1,5 +1,4 @@
 import * as React from "react"
-import CardComponentRecepies from "../components/CardComponentRecepies"
 import { Box, Card, Container, Stack, Typography } from "@mui/material"
 import Image from "mui-image"
 import Layout from "../components/Layout"
@@ -28,8 +27,34 @@ const RecepiesApp = ({ data }) => {
     }
     return 0
   }
-
   const sortedPosts = data.allContentfulMenyV1.edges.sort(sortingFunction)
+
+  const now = new Date()
+  const dayOfWeek = now.getDay() // Veckodag (0 = Söndag, 1 = Måndag, ..., 6 = Lördag)
+  const weekNumber = getWeek(now) // Veckonummer
+  const weekDays = [
+    "Söndag",
+    "Måndag",
+    "Tisdag",
+    "Onsdag",
+    "Torsdag",
+    "Fredag",
+    "Lördag",
+  ]
+  const weekDayName = weekDays[dayOfWeek] // Svenskt veckodagsnamn
+
+  console.log("Veckodag: ", weekDayName)
+  console.log("Veckodag: ", dayOfWeek)
+  console.log("Veckonummer: ", weekNumber)
+
+  // Funktion för att hämta veckonummer
+  function getWeek(date) {
+    const onejan = new Date(date.getFullYear(), 0, 1)
+    const millisecsInDay = 86400000
+    return Math.ceil(
+      ((date - onejan) / millisecsInDay + onejan.getDay() + 1) / 7
+    )
+  }
 
   return (
     <Layout>
@@ -42,27 +67,53 @@ const RecepiesApp = ({ data }) => {
         >
           <Stack alignItems="center" my={2}>
             <Typography variant="h5" mb={4}>
-              Meny vecka 20
+              Meny vecka {weekNumber}
             </Typography>
             <Stack
               direction={{ xs: "column-reverse", md: "row-reverse" }}
               gap={4}
             >
-              {sortedPosts.map(edge => (
-                <Stack
-                  alignItems="center"
-                  border="solid 1px silver"
-                  p={1}
-                  gap={1}
-                  width="200px"
-                >
-                  <Typography variant="h6">{edge.node.dag}</Typography>
-                  <Typography variant="h8">{edge.node.rtt}</Typography>
-                  {/* Rendera andra värden här */}
+              {sortedPosts.map(edge => {
+                // Get the index of the generated day
+                const genereradDagIndex = weekDays.indexOf(edge.node.dag)
 
-                  <Image src={edge.node.bild.file.url} width={100} />
-                </Stack>
-              ))}
+                // Compare the index of the generated day with the index of today
+                if (genereradDagIndex === dayOfWeek) {
+                  console.log("Dagen stämmer överens med idag!")
+                  return (
+                    <Stack
+                      alignItems="center"
+                      border="solid 2px green" // Apply green border
+                      p={1}
+                      gap={1}
+                      width="200px"
+                    >
+                      <Typography variant="h6">{edge.node.dag}</Typography>
+                      <Typography variant="h8">{edge.node.rtt}</Typography>
+                      {/* Render other values here */}
+
+                      <Image src={edge.node.bild.file.url} width={100} />
+                    </Stack>
+                  )
+                } else {
+                  console.log("Dagen stämmer inte överens med idag.")
+                  return (
+                    <Stack
+                      alignItems="center"
+                      border="solid 1px silver"
+                      p={1}
+                      gap={1}
+                      width="200px"
+                    >
+                      <Typography variant="h6">{edge.node.dag}</Typography>
+                      <Typography variant="h8">{edge.node.rtt}</Typography>
+                      {/* Render other values here */}
+
+                      <Image src={edge.node.bild.file.url} width={100} />
+                    </Stack>
+                  )
+                }
+              })}
             </Stack>
           </Stack>
         </Card>
