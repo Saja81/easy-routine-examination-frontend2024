@@ -48,11 +48,7 @@ export default function NavBar() {
                 <AppRegistrationIcon />
               </IconButton>
 
-              <Typography
-                display={{ xs: "none", md: "block" }}
-                variant="h6"
-                // component="div"
-              >
+              <Typography display={{ xs: "none", md: "block" }} variant="h6">
                 Easy Routine
               </Typography>
 

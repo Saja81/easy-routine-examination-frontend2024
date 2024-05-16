@@ -1,17 +1,20 @@
-import { Container, Stack } from "@mui/material"
+import { Box, Container, Stack, Typography } from "@mui/material"
 import * as React from "react"
-import NavBar from "../components/NavBar"
 import CardComponentRecepies from "../components/CardComponentRecepies"
-import Footer from "../components/Footer"
 import Layout from "../components/Layout"
 
 const RecepiesApp = () => (
-  <Container>
-    <Layout>
-      <Stack direction={{ xs: "column", md: "row" }} gap={2} my={2}>
-        <CardComponentRecepies />
+  <Layout>
+    {/* <Container>
+      <Stack>
+        <Typography variant="h2">Meny vecka 20</Typography>
+        <Box>
+          <Typography variant="h4">Dag</Typography>
+          <Typography>Rätt</Typography>
+        </Box>
       </Stack>
-    </Layout>
-  </Container>
+    </Container> */}
+    <CardComponentRecepies />
+  </Layout>
 )
 export default RecepiesApp
