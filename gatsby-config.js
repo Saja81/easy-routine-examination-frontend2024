@@ -70,8 +70,10 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: process.env.SPACE_ID,
-        accessToken: process.env.ACCESS_TOKEN,
+        // spaceId: process.env.SPACE_ID,
+        // accessToken: process.env.ACCESS_TOKEN,
+        spaceId: `yg61i7e220ut`,
+        accessToken: `d8BSxoWUWo3feRBuP5xi1yBSUS1MTNoNVN13lwFFmrk`,
       },
     },
     // TO DO: Add token and ID
