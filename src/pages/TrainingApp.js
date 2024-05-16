@@ -5,9 +5,7 @@ import Layout from "../components/Layout"
 
 const TrainingApp = () => (
   <Layout>
-    <Stack direction={{ xs: "column", md: "row" }} gap={2} my={2}>
-      <CardComponentTraining />
-    </Stack>
+    <CardComponentTraining />
   </Layout>
 )
 export default TrainingApp
