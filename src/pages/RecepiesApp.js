@@ -1,32 +1,46 @@
 import * as React from "react"
-import { Box, Card, Container, Stack, Typography } from "@mui/material"
+import {
+  Box,
+  Card,
+  Container,
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+  Stack,
+  Typography,
+} from "@mui/material"
 import Image from "mui-image"
 import Layout from "../components/Layout"
 import { graphql } from "gatsby"
 
 const RecepiesApp = ({ data }) => {
   // Function to sort weekdays.
+
   const sortingFunction = (a, b) => {
     // Weekdays in Swedish
     const weekdays = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag"]
 
     // Get the weekday from a and b
-    const dayA = a.node.day
-    const dayB = b.node.day
+    const dayA = a.node.dag
+    const dayB = b.node.dag
 
     // Get the index for a and b in the weekdays array
     const indexA = weekdays.indexOf(dayA)
     const indexB = weekdays.indexOf(dayB)
 
     // Compare indexes to sort
-    if (indexA < indexB) {
+    if (indexA > indexB) {
+      // Changed this line
       return -1
     }
-    if (indexA > indexB) {
+    if (indexA < indexB) {
+      // Changed this line
       return 1
     }
     return 0
   }
+
   const sortedPosts = data.allContentfulMenyV1.edges.sort(sortingFunction)
 
   const now = new Date()
@@ -62,60 +76,86 @@ const RecepiesApp = ({ data }) => {
         <Card
           variant="none"
           sx={{
+            textAlign: "center",
             my: 2,
           }}
         >
-          <Stack alignItems="center" my={2}>
-            <Typography variant="h5" mb={4}>
-              Meny vecka {weekNumber}
-            </Typography>
-            <Stack
-              direction={{ xs: "column-reverse", md: "row-reverse" }}
-              gap={4}
-            >
-              {sortedPosts.map(edge => {
-                // Get the index of the generated day
-                const genereradDagIndex = weekDays.indexOf(edge.node.dag)
+          <Typography variant="h5" mb={4}>
+            Meny vecka {weekNumber}
+          </Typography>
+          <Grid container spacing={2}>
+            {sortedPosts.reverse().map(edge => {
+              // Get the index of the generated day
+              const genereradDagIndex = weekDays.indexOf(edge.node.dag)
 
-                // Compare the index of the generated day with the index of today
-                if (genereradDagIndex === dayOfWeek) {
-                  console.log("Dagen stämmer överens med idag!")
-                  return (
-                    <Stack
-                      alignItems="center"
-                      border="solid 2px green" // Apply green border
-                      p={1}
-                      gap={1}
-                      width="200px"
-                    >
-                      <Typography variant="h6">{edge.node.dag}</Typography>
-                      <Typography variant="h8">{edge.node.rtt}</Typography>
-                      {/* Render other values here */}
+              // Compare the index of the generated day with the index of today
+              return (
+                <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                  <Box
+                    key={edge.node.dag}
+                    alignItems="center"
+                    border={
+                      genereradDagIndex === dayOfWeek
+                        ? "solid 2px green"
+                        : "solid 1px silver"
+                    }
+                    p={1}
+                    display="flex"
+                    flexDirection="column"
+                    width="200px"
+                    height="200px"
+                    // alignItems="center"
+                  >
+                    <Typography variant="h6">{edge.node.dag}</Typography>
+                    <Typography variant="h8">{edge.node.rtt}</Typography>
+                    {/* Render other values here */}
+                    <Image
+                      src={edge.node.bild.file.url}
+                      width={180}
+                      height={150}
+                    />
+                  </Box>
+                </Grid>
+              )
+            })}
 
-                      <Image src={edge.node.bild.file.url} width={100} />
-                    </Stack>
-                  )
-                } else {
-                  console.log("Dagen stämmer inte överens med idag.")
-                  return (
-                    <Stack
-                      alignItems="center"
-                      border="solid 1px silver"
-                      p={1}
-                      gap={1}
-                      width="200px"
-                    >
-                      <Typography variant="h6">{edge.node.dag}</Typography>
-                      <Typography variant="h8">{edge.node.rtt}</Typography>
-                      {/* Render other values here */}
-
-                      <Image src={edge.node.bild.file.url} width={100} />
-                    </Stack>
-                  )
-                }
-              })}
-            </Stack>
-          </Stack>
+            <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+              <Box
+                key="empty-box"
+                alignItems="center"
+                border="solid 1px silver"
+                p={1}
+                display="flex"
+                flexDirection="column"
+                width="200px"
+                height="200px"
+              >
+                <Typography mb={2} variant="h6">
+                  Inköp för veckan
+                </Typography>
+                <Stack direction="row" gap={2}>
+                  <Stack direction="column">
+                    <Typography fontWeight="bold" variant="h7">
+                      Färskvaror
+                    </Typography>
+                    <Typography variant="h9">Fläskfile</Typography>
+                    <Typography variant="h9">Grädde</Typography>
+                    <Typography variant="h9">Potatis</Typography>
+                    <Typography variant="h9">Paprika</Typography>
+                  </Stack>
+                  <Stack direction="column">
+                    <Typography fontWeight="bold" variant="h7">
+                      Skafferi
+                    </Typography>
+                    <Typography variant="h9">Fond</Typography>
+                    <Typography variant="h9">Soja</Typography>
+                    <Typography variant="h9">Övrigt</Typography>
+                    <Typography variant="h9">Övrigt</Typography>
+                  </Stack>
+                </Stack>
+              </Box>
+            </Grid>
+          </Grid>
         </Card>
       </Container>
     </Layout>
