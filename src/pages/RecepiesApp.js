@@ -9,7 +9,7 @@ const RecepiesApp = ({ data }) => {
   // Function to sort weekdays.
   const sortingFunction = (a, b) => {
     // Weekdays in Swedish
-    const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    const weekdays = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag"]
 
     // Get the weekday from a and b
     const dayA = a.node.day
@@ -44,12 +44,11 @@ const RecepiesApp = ({ data }) => {
             <Typography variant="h5" mb={4}>
               Meny vecka 20
             </Typography>
-            {sortedPosts.map(edge => (
-              <Stack
-                key={edge.node.dag}
-                direction={{ xs: "column", md: "row" }}
-                gap={4}
-              >
+            <Stack
+              direction={{ xs: "column-reverse", md: "row-reverse" }}
+              gap={4}
+            >
+              {sortedPosts.map(edge => (
                 <Stack
                   alignItems="center"
                   border="solid 1px silver"
@@ -63,8 +62,8 @@ const RecepiesApp = ({ data }) => {
 
                   <Image src={edge.node.bild.file.url} width={100} />
                 </Stack>
-              </Stack>
-            ))}
+              ))}
+            </Stack>
           </Stack>
         </Card>
       </Container>
