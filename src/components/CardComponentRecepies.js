@@ -23,7 +23,7 @@ export default function CardComponentRecepies() {
       >
         <CardContent>
           <Typography color="white" variant="h6" component="div">
-            Vad f**n ska vi äta till middag?
+            Vad ska vi äta idag?
           </Typography>
         </CardContent>
         <CardActions>
