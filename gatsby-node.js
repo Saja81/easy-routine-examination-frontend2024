@@ -19,48 +19,48 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // const menyTemplateV4 = path.resolve("./src/templates/MenyPostsv4.js")
 
   // Fetch data from Contentful for projects
-  const projectsResult = await graphql(`
-    {
-      allContentfulProjekt {
-        nodes {
-          titel
-          slug
-          kategori
-        }
-      }
-    }
-  `)
+  // const projectsResult = await graphql(`
+  //   {
+  //     allContentfulProjekt {
+  //       nodes {
+  //         titel
+  //         slug
+  //         kategori
+  //       }
+  //     }
+  //   }
+  // `)
 
-  if (projectsResult.errors) {
-    reporter.panicOnBuild(
-      `There was an error loading your Contentful projects`,
-      projectsResult.errors
-    )
-    return
-  }
+  // if (projectsResult.errors) {
+  //   reporter.panicOnBuild(
+  //     `There was an error loading your Contentful projects`,
+  //     projectsResult.errors
+  //   )
+  //   return
+  // }
 
-  const projects = projectsResult.data.allContentfulProjekt.nodes
+  // const projects = projectsResult.data.allContentfulProjekt.nodes
 
-  if (projects.length > 0) {
-    projects.forEach(project => {
-      createPage({
-        path: `/${project.slug}/`,
-        component: projectTemplate,
-        context: {
-          slug: project.slug,
-        },
-      })
+  // if (projects.length > 0) {
+  //   projects.forEach(project => {
+  //     createPage({
+  //       path: `/${project.slug}/`,
+  //       component: projectTemplate,
+  //       context: {
+  //         slug: project.slug,
+  //       },
+  //     })
 
-      createPage({
-        path: `/${project.kategori.toLowerCase()}/`, // Lägg till kategori i sökvägen
-        component: projectTemplate,
-        context: {
-          slug: project.slug,
-          kategori: project.kategori, // Skicka med kategorin som en del av context
-        },
-      })
-    })
-  }
+  //     createPage({
+  //       path: `/${project.kategori.toLowerCase()}/`, // Lägg till kategori i sökvägen
+  //       component: projectTemplate,
+  //       context: {
+  //         slug: project.slug,
+  //         kategori: project.kategori, // Skicka med kategorin som en del av context
+  //       },
+  //     })
+  //   })
+  // }
 
   // Fetch data from Contentful for menyv1 posts
   const menyResultV1 = await graphql(`
