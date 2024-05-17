@@ -29,9 +29,9 @@ const RecepiesApp = ({ data }) => {
             Meny vecka {weekNumber}
           </Typography>
           <Week1 />
-          <Week2 />
+          {/* <Week2 />
           <Week3 />
-          <Week4 />
+          <Week4 /> */}
         </Card>
       </Container>
     </Layout>
