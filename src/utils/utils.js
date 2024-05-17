@@ -1,4 +1,5 @@
 // src/utils.js
+
 export const sortingFunction = (a, b) => {
   const weekdays = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag"]
   const dayA = a.node.dag
@@ -43,4 +44,23 @@ export const getCurrentWeekInfo = () => {
     weekDays,
     weekDayName,
   }
+}
+
+export const getMenusForWeek = weekNumber => {
+  let menuOne = null
+  let menuTwo = null
+  let menuThree = null
+  let menuFour = null
+
+  if (weekNumber === 1 || weekNumber % 4 === 0) {
+    menuOne = "menyV1"
+  } else if (weekNumber === 2 || weekNumber % 4 === 1) {
+    menuTwo = "menyV2"
+  } else if (weekNumber === 3 || weekNumber % 4 === 2) {
+    menuThree = "menyV3"
+  } else if (weekNumber === 4 || weekNumber % 4 === 3) {
+    menuFour = "menyV4"
+  }
+
+  return { menuOne, menuTwo, menuThree, menuFour }
 }
