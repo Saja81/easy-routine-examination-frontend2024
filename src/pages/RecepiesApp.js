@@ -118,30 +118,36 @@ const RecepiesApp = ({ data }) => {
                 p={1}
                 display="flex"
                 flexDirection="column"
-                maxWidth="200px"
-                maxHeight="200px"
+                width={{ xs: "120px", md: "200px" }}
+                height={{ xs: "170px", md: "200px" }}
               >
-                <Typography mb={2} variant="h6">
-                  Inköp för veckan
+                <Typography fontSize="12px" fontWeight="bold" mb={1}>
+                  Inköp
                 </Typography>
                 <Stack direction="row" gap={2}>
                   <Stack direction="column">
-                    <Typography fontWeight="bold" variant="h7">
+                    <Typography
+                      fontSize="12px"
+                      sx={{ textDecoration: "underline" }}
+                    >
                       Färskvaror
                     </Typography>
-                    <Typography variant="h9">Fläskfile</Typography>
-                    <Typography variant="h9">Grädde</Typography>
-                    <Typography variant="h9">Potatis</Typography>
-                    <Typography variant="h9">Paprika</Typography>
+                    <Typography fontSize="12px">Fläskfile</Typography>
+                    <Typography fontSize="12px">Grädde</Typography>
+                    <Typography fontSize="12px">Potatis</Typography>
+                    <Typography fontSize="12px">Paprika</Typography>
                   </Stack>
                   <Stack direction="column">
-                    <Typography fontWeight="bold" variant="h7">
+                    <Typography
+                      fontSize="12px"
+                      sx={{ textDecoration: "underline" }}
+                    >
                       Skafferi
                     </Typography>
-                    <Typography variant="h9">Fond</Typography>
-                    <Typography variant="h9">Soja</Typography>
-                    <Typography variant="h9">Övrigt</Typography>
-                    <Typography variant="h9">Övrigt</Typography>
+                    <Typography fontSize="12px">Fond</Typography>
+                    <Typography fontSize="12px">Soja</Typography>
+                    <Typography fontSize="12px">Övrigt</Typography>
+                    <Typography fontSize="12px">Övrigt</Typography>
                   </Stack>
                 </Stack>
               </Box>
