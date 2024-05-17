@@ -31,3 +31,17 @@
 .button-link:hover {
   /* transform: scale(1.1); */
 }
+
+.responsive-img {
+  margin-top: 20px;
+  width: 100px;
+  height: 80px;
+}
+
+@media (min-width: 900px) {
+  .responsive-img {
+    margin-top: 30px;
+    width: 150px;
+    height: 150px;
+  }
+}

@@ -1,16 +1,6 @@
 import * as React from "react"
-import {
-  Box,
-  Card,
-  Container,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  Stack,
-  Typography,
-} from "@mui/material"
-import Image from "mui-image"
+import { Box, Card, Container, Grid, Stack, Typography } from "@mui/material"
+
 import Layout from "../components/Layout"
 import { graphql } from "gatsby"
 
@@ -90,7 +80,7 @@ const RecepiesApp = ({ data }) => {
 
               // Compare the index of the generated day with the index of today
               return (
-                <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                <Grid item xs={6} sm={6} md={4} lg={4} xl={4}>
                   <Box
                     key={edge.node.dag}
                     alignItems="center"
@@ -102,24 +92,25 @@ const RecepiesApp = ({ data }) => {
                     p={1}
                     display="flex"
                     flexDirection="column"
-                    width="200px"
-                    height="200px"
+                    width={{ xs: "120px", md: "200px" }}
+                    height={{ xs: "170px", md: "200px" }}
+                    // maxWidth="200px"
+                    // maxHeight="200px"
                     // alignItems="center"
                   >
                     <Typography variant="h6">{edge.node.dag}</Typography>
                     <Typography variant="h8">{edge.node.rtt}</Typography>
                     {/* Render other values here */}
-                    <Image
+                    <img
+                      className="responsive-img"
                       src={edge.node.bild.file.url}
-                      width={180}
-                      height={150}
                     />
                   </Box>
                 </Grid>
               )
             })}
 
-            <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+            <Grid item xs={6} sm={6} md={4} lg={4} xl={4}>
               <Box
                 key="empty-box"
                 alignItems="center"
@@ -127,8 +118,8 @@ const RecepiesApp = ({ data }) => {
                 p={1}
                 display="flex"
                 flexDirection="column"
-                width="200px"
-                height="200px"
+                maxWidth="200px"
+                maxHeight="200px"
               >
                 <Typography mb={2} variant="h6">
                   Inköp för veckan
