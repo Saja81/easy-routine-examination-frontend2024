@@ -1,6 +1,5 @@
 import * as React from "react"
 import { Box, Grid, Stack, Typography } from "@mui/material"
-
 import { graphql, useStaticQuery, Link } from "gatsby"
 import { sortingFunction, getCurrentWeekInfo } from "../utils/utils"
 
