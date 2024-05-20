@@ -36,6 +36,9 @@ export const getCurrentWeekInfo = () => {
     "Lördag",
   ]
   const weekDayName = weekDays[dayOfWeek]
+  console.log("Now: ", now)
+  console.log("Veckodag: ", dayOfWeek)
+  console.log("Veckonummer är: ", weekNumber)
 
   return {
     now,
@@ -52,13 +55,13 @@ export const getMenusForWeek = weekNumber => {
   let menuThree = null
   let menuFour = null
 
-  if (weekNumber === 1 || weekNumber % 4 === 0) {
+  if (weekNumber % 4 === 1) {
     menuOne = "menyV1"
-  } else if (weekNumber === 2 || weekNumber % 4 === 1) {
+  } else if (weekNumber % 4 === 2) {
     menuTwo = "menyV2"
-  } else if (weekNumber === 3 || weekNumber % 4 === 2) {
+  } else if (weekNumber % 4 === 3) {
     menuThree = "menyV3"
-  } else if (weekNumber === 4 || weekNumber % 4 === 3) {
+  } else if (weekNumber % 4 === 0) {
     menuFour = "menyV4"
   }
 

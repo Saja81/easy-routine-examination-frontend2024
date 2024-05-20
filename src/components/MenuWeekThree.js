@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Box, Grid, Stack, Typography } from "@mui/material"
 
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery, Link } from "gatsby"
 import { sortingFunction, getCurrentWeekInfo } from "../utils/utils"
 
 const Week3 = () => {
@@ -24,6 +24,7 @@ const Week3 = () => {
             grSHr {
               raw
             }
+            slug
           }
         }
       }
@@ -39,29 +40,35 @@ const Week3 = () => {
 
         // Compare the index of the generated day with the index of today
         return (
-          <Grid item xs={6} sm={6} md={4} lg={4} xl={4}>
-            <Box
-              key={edge.node.dag}
-              alignItems="center"
-              border={
-                genereradDagIndex === dayOfWeek
-                  ? "solid 2px green"
-                  : "solid 1px silver"
-              }
-              p={1}
-              display="flex"
-              flexDirection="column"
-              width={{ xs: "120px", md: "200px" }}
-              height={{ xs: "170px", md: "200px" }}
-              // maxWidth="200px"
-              // maxHeight="200px"
-              // alignItems="center"
-            >
-              <Typography variant="h6">{edge.node.dag}</Typography>
-              <Typography variant="h8">{edge.node.rtt}</Typography>
-              {/* Render other values here */}
-              <img className="responsive-img" src={edge.node.bild.file.url} />
-            </Box>
+          <Grid key={edge.node.rtt} item xs={6} sm={6} md={4} lg={4} xl={4}>
+            <Link className="menu-link" to={`/menyv3/${edge.node.slug}/`}>
+              <Box
+                key={edge.node.dag}
+                alignItems="center"
+                border={
+                  genereradDagIndex === dayOfWeek
+                    ? "solid 2px green"
+                    : "solid 1px silver"
+                }
+                p={1}
+                display="flex"
+                flexDirection="column"
+                width={{ xs: "120px", md: "200px" }}
+                height={{ xs: "170px", md: "200px" }}
+                // maxWidth="200px"
+                // maxHeight="200px"
+                // alignItems="center"
+              >
+                <Typography variant="h6">{edge.node.dag}</Typography>
+                <Typography variant="h8">{edge.node.rtt}</Typography>
+                {/* Render other values here */}
+                <img
+                  className="responsive-img"
+                  src={edge.node.bild.file.url}
+                  alt="Todays meal"
+                />
+              </Box>
+            </Link>
           </Grid>
         )
       })}
