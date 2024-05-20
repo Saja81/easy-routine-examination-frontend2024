@@ -72,8 +72,6 @@ module.exports = {
       options: {
         spaceId: process.env.GATSBY_SPACE_ID,
         accessToken: process.env.GATSBY_ACCESS_TOKEN,
-        // spaceId: `yg61i7e220ut`,
-        // accessToken: `d8BSxoWUWo3feRBuP5xi1yBSUS1MTNoNVN13lwFFmrk`,
       },
     },
     // TO DO: Add token and ID
