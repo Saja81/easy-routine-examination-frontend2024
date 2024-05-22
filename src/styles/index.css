@@ -43,6 +43,20 @@
   height: 80px;
 }
 
+.toggle-img {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.toggle-img.flip {
+  transform: rotateY(180deg);
+}
+
+.toggle-img-container {
+  perspective: 1000px;
+}
+
 @media (min-width: 900px) {
   .responsive-img {
     margin-top: 30px;

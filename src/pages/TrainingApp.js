@@ -1,18 +1,17 @@
 import {
-  AppBar,
   Box,
   Button,
   Container,
   Divider,
   Grid,
-  IconButton,
   Modal,
   Stack,
   Typography,
 } from "@mui/material"
 import * as React from "react"
 import { useState, useEffect } from "react"
-import CloseIcon from "@mui/icons-material/Close"
+
+import TrainingCrossfit from "../components/TrainingCrossfit"
 
 import dumbells_gray from "../images/dumbells_gray.png"
 import dumbells_blue from "../images/dumbells_blue.png"
@@ -20,73 +19,48 @@ import barbell_gray from "../images/barbell_gray.png"
 import barbell_blue from "../images/barbell_blue.png"
 import kettlebell_gray from "../images/kettlebell_gray.png"
 import kettlebell_blue from "../images/kettlebell_blue.png"
-import Ny_gray from "../images/Ny_gray.png"
-import Ny_blue from "../images/Ny_blue.png"
-import Mo_gray from "../images/Mo_gray.png"
-import Mo_blue from "../images/Mo_blue.png"
-import El_gray from "../images/El_gray.png"
-import El_blue from "../images/El_blue.png"
+import crossfit_gray from "../images/crossfit_gray.png"
+import crossfit_blue from "../images/crossfit_blue.png"
 
 import Layout from "../components/Layout"
 
+const equipmentImages = {
+  Crossfit: { gray: crossfit_gray, blue: crossfit_blue },
+  Kettlebell: { gray: kettlebell_gray, blue: kettlebell_blue },
+  Dumbells: { gray: dumbells_gray, blue: dumbells_blue },
+  Barbell: { gray: barbell_gray, blue: barbell_blue },
+}
+
 const TrainingApp = () => {
-  const [currentImageDumb, setCurrentImageDumb] = useState(dumbells_gray)
-  const [isDumbellsBlue, setIsDumbellsBlue] = useState(false)
-  const [isModal, setIsModal] = useState(false)
-
-  const [currentImageBar, setCurrentImageBar] = useState(barbell_gray)
-  const [isBarBlue, setIsBarBlue] = useState(false)
-
-  const [currentImageKet, setCurrentImageKet] = useState(kettlebell_gray)
-  const [isKetBlue, setIsKetBlue] = useState(false)
+  const [images, setImages] = useState({
+    Dumbells: dumbells_gray,
+    Barbell: barbell_gray,
+    Kettlebell: kettlebell_gray,
+    Crossfit: crossfit_gray,
+  })
 
   const [selectedEquipment, setSelectedEquipment] = useState([])
+  const [isModal, setIsModal] = useState(false)
+  const [flipped, setFlipped] = useState({})
 
-  const toggleImageDumb = () => {
-    setCurrentImageDumb(prevImage => {
-      const nextImage =
-        prevImage === dumbells_gray ? dumbells_blue : dumbells_gray
-      if (nextImage === dumbells_gray) {
-        setSelectedEquipment(prevEquipment =>
-          prevEquipment.filter(item => item !== "Dumbells")
-        )
-      } else {
-        setSelectedEquipment(prevEquipment => [...prevEquipment, "Dumbells"])
-      }
-      setIsDumbellsBlue(prevState => !prevState)
-      return nextImage
-    })
-  }
-
-  const toggleImageBar = () => {
-    setCurrentImageBar(prevImage => {
-      const nextImage = prevImage === barbell_gray ? barbell_blue : barbell_gray
-      if (nextImage === barbell_gray) {
-        setSelectedEquipment(prevEquipment =>
-          prevEquipment.filter(item => item !== "Barbell")
-        )
-      } else {
-        setSelectedEquipment(prevEquipment => [...prevEquipment, "Barbell"])
-      }
-      setIsBarBlue(prevState => !prevState)
-      return nextImage
-    })
-  }
-
-  const toggleImageKet = () => {
-    setCurrentImageKet(prevImage => {
-      const nextImage =
-        prevImage === kettlebell_gray ? kettlebell_blue : kettlebell_gray
-      if (nextImage === kettlebell_gray) {
-        setSelectedEquipment(prevEquipment =>
-          prevEquipment.filter(item => item !== "Kettlebell")
-        )
-      } else {
-        setSelectedEquipment(prevEquipment => [...prevEquipment, "Kettlebell"])
-      }
-      setIsKetBlue(prevState => !prevState)
-      return nextImage
-    })
+  const toggleImage = name => {
+    setFlipped(prev => ({ ...prev, [name]: !prev[name] }))
+    setTimeout(() => {
+      setImages(prevImages => {
+        const isBlue = prevImages[name] === equipmentImages[name].blue
+        const nextImage = isBlue
+          ? equipmentImages[name].gray
+          : equipmentImages[name].blue
+        return { ...prevImages, [name]: nextImage }
+      })
+      setSelectedEquipment(prevEquipment => {
+        if (prevEquipment.includes(name)) {
+          return prevEquipment.filter(item => item !== name)
+        } else {
+          return [...prevEquipment, name]
+        }
+      })
+    }, 300) // Match the timeout with the CSS transition duration
   }
 
   useEffect(() => {
@@ -107,162 +81,186 @@ const TrainingApp = () => {
           <Divider sx={{ width: "100%", my: 2 }} />
 
           <Box sx={{ flexGrow: 1, padding: 2 }}>
-            <Typography>Välj vilken utrustning du vill träna med:</Typography>
+            <Typography mb={2}>
+              Välj vilken utrustning du vill träna med:
+            </Typography>
             <Grid container spacing={2}>
-              <Grid item xs={4}>
-                <img
-                  src={currentImageDumb}
-                  alt="Dumbells"
-                  onClick={toggleImageDumb}
-                  width="70px"
-                  height="70px"
-                  style={{ cursor: "pointer" }}
-                />
-              </Grid>
-              <Grid item xs={4}>
-                <img
-                  src={currentImageBar}
-                  alt="Barbell"
-                  onClick={toggleImageBar}
-                  width="70px"
-                  height="70px"
-                  style={{ cursor: "pointer" }}
-                />
-              </Grid>
-              <Grid item xs={4}>
-                <img
-                  src={currentImageKet}
-                  alt="Kettlebell"
-                  onClick={toggleImageKet}
-                  width="70px"
-                  height="70px"
-                  style={{ cursor: "pointer" }}
-                />
-              </Grid>
+              {Object.keys(equipmentImages).map(name => (
+                <Grid item xs={4} key={name} className="toggle-img-container">
+                  <img
+                    className={`toggle-img ${flipped[name] ? "flip" : ""}`}
+                    src={images[name]}
+                    alt={name}
+                    onClick={() => toggleImage(name)}
+                    width="70px"
+                    height="70px"
+                    style={{ cursor: "pointer" }}
+                  />
+                </Grid>
+              ))}
             </Grid>
           </Box>
 
-          {/* Knapp för att lägga till vald utrustning */}
-          <Button variant="contained" onClick={() => setIsModal(true)}>
+          <Button
+            variant="contained"
+            onClick={() => setIsModal(true)}
+            sx={{ my: 2 }}
+          >
             Öppna träningspass
           </Button>
 
-          {selectedEquipment.includes("Kettlebell") && (
-            <Modal
-              open={isModal}
-              onClose={() => setIsModal(false)}
-              aria-labelledby="modal-title"
-              aria-describedby="modal-description"
-            >
-              <Box
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                height="100vh"
-              >
-                <Stack
-                  bgcolor="white"
-                  borderRadius={2}
-                  width="75%"
-                  height="75%"
-                  p={2}
+          {["Kettlebell", "Dumbells", "Barbell", "Crossfit"].map(
+            name =>
+              selectedEquipment.includes(name) && (
+                <Modal
+                  open={isModal}
+                  onClose={() => setIsModal(false)}
+                  aria-labelledby="modal-title"
+                  aria-describedby="modal-description"
+                  key={name}
                 >
-                  <Stack
-                    direction="row"
+                  <Box
+                    display="flex"
                     alignItems="center"
-                    justifyContent="space-between"
+                    justifyContent="center"
+                    height="100vh"
                   >
-                    <Typography variant="h7" fontWeight="bold">
-                      Kettlebell
-                    </Typography>
-                    <IconButton>
-                      <CloseIcon onClick={() => setIsModal(false)} />
-                    </IconButton>
-                  </Stack>
-                  <Typography>Swing</Typography>
-                  <Typography>Snatch</Typography>
-                  <Typography>Press</Typography>
-                </Stack>
-              </Box>
-            </Modal>
-          )}
-          {selectedEquipment.includes("Dumbells") && (
-            <Modal
-              open={isModal}
-              onClose={() => setIsModal(false)}
-              aria-labelledby="modal-title"
-              aria-describedby="modal-description"
-            >
-              <Box
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                height="100vh"
-              >
-                <Stack
-                  bgcolor="white"
-                  borderRadius={2}
-                  width="75%"
-                  height="75%"
-                  p={2}
-                >
-                  <Stack
-                    direction="row"
-                    alignItems="center"
-                    justifyContent="space-between"
-                  >
-                    <Typography variant="h7" fontWeight="bold">
-                      Dumbells
-                    </Typography>
-                    <IconButton>
-                      <CloseIcon onClick={() => setIsModal(false)} />
-                    </IconButton>
-                  </Stack>
-                  <Typography>Press</Typography>
-                  <Typography>Curls</Typography>
-                  <Typography>Lyft åt sidan</Typography>
-                </Stack>
-              </Box>
-            </Modal>
-          )}
-          {selectedEquipment.includes("Barbell") && (
-            <Modal
-              open={isModal}
-              onClose={() => setIsModal(false)}
-              aria-labelledby="modal-title"
-              aria-describedby="modal-description"
-            >
-              <Box
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                height="100vh"
-              >
-                <Stack
-                  bgcolor="white"
-                  borderRadius={2}
-                  width="75%"
-                  height="75%"
-                  p={2}
-                >
-                  <Stack
-                    direction="row"
-                    alignItems="center"
-                    justifyContent="space-between"
-                  >
-                    <Typography variant="h7" fontWeight="bold">
-                      Barbell
-                    </Typography>
-                    <IconButton>
-                      <CloseIcon onClick={() => setIsModal(false)} />
-                    </IconButton>
-                  </Stack>
-                  <Typography>Knäböj</Typography>
-                  <Typography>Marklyft</Typography>
-                  <Typography>Bänkpress</Typography>
-                </Stack>
-              </Box>
-            </Modal>
+                    <Stack
+                      bgcolor="white"
+                      borderRadius={2}
+                      width="75%"
+                      height="75%"
+                      p={2}
+                      textAlign="center"
+                    >
+                      {name === "Crossfit" && (
+                        <TrainingCrossfit />
+
+                        // <>
+                        //   <Typography>How to do it</Typography>
+                        //   <Typography>
+                        //     Circuit: 5 laps, 5 exercises, 25 reps
+                        //   </Typography>
+                        //   <Box
+                        //     sx={{
+                        //       display: "flex",
+                        //       justifyContent: "center",
+                        //       alignItems: "center",
+                        //     }}
+                        //   >
+                        //     <Divider sx={{ width: "50%", my: 2 }} />
+                        //   </Box>
+                        //   <Stack spacing={2}>
+                        //     <Typography>Jumpingcropes</Typography>
+                        //     <Typography>Pushups</Typography>
+                        //     <Typography>Battle ropes</Typography>
+                        //     <Typography>Squats</Typography>
+                        //     <Typography>Burpees</Typography>
+                        //   </Stack>
+
+                        //   <Button variant="outlined" sx={{ mt: 4 }}>
+                        //     Let's Go!
+                        //   </Button>
+                        // </>
+                      )}
+
+                      {name === "Kettlebell" && (
+                        <>
+                          <Typography>How to do it</Typography>
+                          <Typography>
+                            Amrap 20 minutes, 5 exercises, 15 reps
+                          </Typography>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <Divider sx={{ width: "50%", my: 2 }} />
+                          </Box>
+                          <Stack spacing={2}>
+                            <Typography>Swing (20 reps)</Typography>
+                            <Typography>Snatch (20 reps)</Typography>
+                            <Typography>Press (10 reps/arm)</Typography>
+                            <Typography>Goblet Squat (20 reps)</Typography>
+                            <Typography>TGU (10 reps/arm)</Typography>
+                          </Stack>
+
+                          <Button variant="outlined" sx={{ mt: 4 }}>
+                            Let's Go!
+                          </Button>
+                        </>
+                      )}
+                      {name === "Dumbells" && (
+                        <>
+                          <Typography>How to do it</Typography>
+                          <Typography>Styrkelyft: 5*5.</Typography>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <Divider sx={{ width: "50%", my: 2 }} />
+                          </Box>
+                          <Stack spacing={2}>
+                            <Typography>Knäböj</Typography>
+                            <Typography>Bänkpress</Typography>
+                            <Typography>Marklyft</Typography>
+                            <Typography>Militärpress</Typography>
+                            <Typography>Rodd</Typography>
+                          </Stack>
+
+                          <Button variant="outlined" sx={{ mt: 4 }}>
+                            Let's Go!
+                          </Button>
+                        </>
+                      )}
+                      {name === "Barbell" && (
+                        <>
+                          <Typography>How to do it</Typography>
+                          <Typography>
+                            Amrap 20 minutes, 5 exercises, 15 reps
+                          </Typography>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <Divider sx={{ width: "50%", my: 2 }} />
+                          </Box>
+                          <Stack spacing={2}>
+                            <Typography>Swing (20 reps)</Typography>
+                            <Typography>Snatch (20 reps)</Typography>
+                            <Typography>Press (10 reps/arm)</Typography>
+                            <Typography>Goblet Squat (20 reps)</Typography>
+                            <Typography>TGU (10 reps/arm)</Typography>
+                          </Stack>
+
+                          <Button variant="outlined" sx={{ mt: 4 }}>
+                            Let's Go!
+                          </Button>
+                        </>
+                      )}
+
+                      <Box
+                        display="flex"
+                        flexDirection="column"
+                        justifyContent="flex-end"
+                        alignItems="flex-end"
+                        height="100%"
+                        className="parent-element"
+                      >
+                        <Button onClick={() => setIsModal(false)}>Close</Button>
+                      </Box>
+                    </Stack>
+                  </Box>
+                </Modal>
+              )
           )}
         </Stack>
       </Container>
