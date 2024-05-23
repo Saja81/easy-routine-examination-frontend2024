@@ -128,8 +128,8 @@ const TrainingApp = () => {
                     <Stack
                       bgcolor="white"
                       borderRadius={2}
-                      width="75%"
-                      height="75%"
+                      width="85%"
+                      height="90%"
                       p={2}
                       textAlign="center"
                     >

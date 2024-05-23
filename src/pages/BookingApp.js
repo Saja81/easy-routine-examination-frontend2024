@@ -1,10 +1,10 @@
 import * as React from "react"
 import Layout from "../components/Layout"
-import CardComponentBooking from "../components/CardComponentBooking"
+import CalendarComponent from "../components/CalendarComponent"
 
 const BookingApp = () => (
   <Layout>
-    <CardComponentBooking />
+    <CalendarComponent />
   </Layout>
 )
 export default BookingApp
