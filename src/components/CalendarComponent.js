@@ -7,6 +7,8 @@ import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
+import { collection, addDoc } from "firebase/firestore"
+import { db } from "../../firebaseConfig"
 
 const CalendarComponent = () => {
   const [selectedDate, setSelectedDate] = useState(null)
@@ -40,28 +42,50 @@ const CalendarComponent = () => {
     setInputValue(newValue)
   }
 
+  // const handleBookButtonClick = async () => {
+  //   if (selectedDate) {
+  //     const dateStr = selectedDate.format("YYYY-MM-DD")
+  //     const updatedNotes = {
+  //       ...notes,
+  //       [dateStr]: inputValue,
+  //     }
+  //     setNotes(updatedNotes)
+
+  //     // Save to local storage (since we cannot write to a file in a static environment)
+  //     //  localStorage.setItem("notes", JSON.stringify(updatedNotes))
+
+  //     // Save to Netlify Function
+  //     try {
+  //       const response = await fetch("/.netlify/functions/saveNote", {
+  //         method: "POST",
+  //         body: JSON.stringify({ date: dateStr, note: inputValue }),
+  //       })
+  //       const result = await response.json()
+  //       console.log(result)
+  //     } catch (error) {
+  //       console.error("Error saving note:", error)
+  //     }
+  //   }
+  // }
+
   const handleBookButtonClick = async () => {
     if (selectedDate) {
       const dateStr = selectedDate.format("YYYY-MM-DD")
-      const updatedNotes = {
-        ...notes,
-        [dateStr]: inputValue,
-      }
-      setNotes(updatedNotes)
 
-      // Save to local storage (since we cannot write to a file in a static environment)
-      //  localStorage.setItem("notes", JSON.stringify(updatedNotes))
-
-      // Save to Netlify Function
       try {
-        const response = await fetch("/.netlify/functions/saveNote", {
-          method: "POST",
-          body: JSON.stringify({ date: dateStr, note: inputValue }),
+        await addDoc(collection(db, "bookings"), {
+          date: dateStr,
+          booking: inputValue,
         })
-        const result = await response.json()
-        console.log(result)
+        console.log("Booking added successfully!")
+
+        // Lägg till en konsollogg för att visa den nya bokningen
+        console.log("New booking:", {
+          date: dateStr,
+          booking: inputValue,
+        })
       } catch (error) {
-        console.error("Error saving note:", error)
+        console.error("Error adding booking:", error)
       }
     }
   }

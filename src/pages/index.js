@@ -6,6 +6,7 @@ import CardComponentBooking from "../components/CardComponentBooking"
 import Layout from "../components/Layout"
 import "../styles/index.css"
 import { Link } from "gatsby"
+import { db } from "../../firebaseConfig"
 
 const App = () => (
   <Container>
