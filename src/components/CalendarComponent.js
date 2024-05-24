@@ -19,8 +19,8 @@ const CalendarComponent = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        // const response = await fetch("/notes.json") // Fetch from public folder
-        const response = await fetch("/.netlify/functions/getNotes") // Fetch from netlify functions
+        const response = await fetch("/notes.json") // Fetch from public folder
+        // const response = await fetch("/.netlify/functions/getNotes") // Fetch from netlify functions
         const data = await response.json()
         setNotes(data)
         console.log("Notes fetched:", data)
@@ -52,19 +52,19 @@ const CalendarComponent = () => {
       setNotes(updatedNotes)
 
       // Save to local storage (since we cannot write to a file in a static environment)
-      //  localStorage.setItem("notes", JSON.stringify(updatedNotes))
+      localStorage.setItem("notes", JSON.stringify(updatedNotes))
 
       // Save to Netlify Function
-      try {
-        const response = await fetch("/.netlify/functions/saveNote", {
-          method: "POST",
-          body: JSON.stringify({ date: dateStr, note: inputValue }),
-        })
-        const result = await response.json()
-        console.log(result)
-      } catch (error) {
-        console.error("Error saving note:", error)
-      }
+      // try {
+      //   const response = await fetch("/.netlify/functions/saveNote", {
+      //     method: "POST",
+      //     body: JSON.stringify({ date: dateStr, note: inputValue }),
+      //   })
+      //   const result = await response.json()
+      //   console.log(result)
+      // } catch (error) {
+      //   console.error("Error saving note:", error)
+      // }
     }
   }
 
