@@ -25,19 +25,19 @@ const CalendarComponent = () => {
   }
 
   // Fetch notes from Netlify function on component mount
-  useEffect(() => {
-    const fetchNotes = async () => {
-      try {
-        const response = await fetch("/.netlify/functions/getNotes")
-        const data = await response.json()
-        setNotes(data)
-        console.log("Notes fetched from Firestore:", data) // Consollogga värden från Firestore
-      } catch (error) {
-        console.error("Error fetching notes:", error)
-      }
-    }
-    fetchNotes()
-  }, [])
+  // useEffect(() => {
+  //   const fetchNotes = async () => {
+  //     try {
+  //       const response = await fetch("/.netlify/functions/getNotes")
+  //       const data = await response.json()
+  //       setNotes(data)
+  //       console.log("Notes fetched from Firestore:", data) // Consollogga värden från Firestore
+  //     } catch (error) {
+  //       console.error("Error fetching notes:", error)
+  //     }
+  //   }
+  //   fetchNotes()
+  // }, [])
 
   const handleDateChange = newValue => {
     setSelectedDate(newValue)
