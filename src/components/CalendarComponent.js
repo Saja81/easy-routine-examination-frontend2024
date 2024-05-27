@@ -141,7 +141,7 @@ const CalendarComponent = () => {
         </Typography>
         {Object.entries(notes).map(([date, booking]) => (
           <Typography key={date} variant="body1">
-            {date}: {/*JSON.stringify(booking)*/ booking.note}
+            {date}: {JSON.stringify(booking)}
           </Typography>
         ))}
       </Box>

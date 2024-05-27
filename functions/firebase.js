@@ -1,5 +1,6 @@
 const admin = require("firebase-admin")
-const serviceAccount = require("./keys/serviceAccountKey.json")
+const serviceAccount = require(`.env.${process.env.GATSBY_GOOGLE_APPLICATION_CREDENTIALS}`)
+// const serviceAccount = require("./keys/serviceAccountKey.json")
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
