@@ -7,7 +7,6 @@ import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
-import { toolbarClasses } from "@mui/material"
 
 const CalendarComponent = () => {
   const [selectedDate, setSelectedDate] = useState(null)
@@ -33,9 +32,6 @@ const CalendarComponent = () => {
     setSelectedDate(newValue)
     const dateStr = newValue ? newValue.format("YYYY-MM-DD") : null
     setInputValue(notes && notes[dateStr] ? notes[dateStr] : "") // Display the note for the selected date or an empty string
-
-    // Denna producerar ev ett object.
-    // Testa att consollogga/kolla react dev tools. När blir staten ett object.
   }
 
   const handleInputChange = e => {
@@ -66,7 +62,6 @@ const CalendarComponent = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ date: dateStr, note: inputValue }),
-          // Sätt fler fält från flera inputs med kommatecken
         })
         const result = await response.json()
         console.log("Result from saving note to Firestore:", result) // Consollogga resultatet från sparandet till Firestore
@@ -75,29 +70,6 @@ const CalendarComponent = () => {
       }
     }
   }
-
-  // Uncomment this section if you want to use Firebase Firestore directly
-  // const handleBookButtonClick = async () => {
-  //   if (selectedDate) {
-  //     const dateStr = selectedDate.format("YYYY-MM-DD")
-  //
-  //     try {
-  //       await addDoc(collection(db, "bookings"), {
-  //         date: dateStr,
-  //         booking: inputValue,
-  //       })
-  //       console.log("Booking added successfully!")
-  //
-  //       // Lägg till en konsollogg för att visa den nya bokningen
-  //       console.log("New booking:", {
-  //         date: dateStr,
-  //         booking: inputValue,
-  //       })
-  //     } catch (error) {
-  //       console.error("Error adding booking:", error)
-  //     }
-  //   }
-  // }
 
   useEffect(() => {
     const storedNotes = localStorage.getItem("notes")
@@ -141,6 +113,7 @@ const CalendarComponent = () => {
         </Typography>
         {Object.entries(notes).map(([date, booking]) => (
           <Typography key={date} variant="body1">
+            {/* {date}: {JSON.stringify(booking)} */}
             {date}: {JSON.stringify(booking)}
           </Typography>
         ))}

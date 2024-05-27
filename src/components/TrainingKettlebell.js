@@ -3,10 +3,10 @@ import { Box, Button, Divider, Stack, Typography } from "@mui/material"
 import { graphql, useStaticQuery } from "gatsby"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
-const TrainingCrossfit = () => {
+const TrainingKettlebell = () => {
   const data = useStaticQuery(graphql`
     query {
-      allContentfulTraningCrossfit {
+      allContentfulTrainingKettlebell {
         edges {
           node {
             namn
@@ -23,11 +23,11 @@ const TrainingCrossfit = () => {
 
   // Generera ett slumpmässigt index
   const randomIndex = Math.floor(
-    Math.random() * data.allContentfulTraningCrossfit.edges.length
+    Math.random() * data.allContentfulTrainingKettlebell.edges.length
   )
   // Hämta en slumpmässig träning från listan
   const randomTraining =
-    data.allContentfulTraningCrossfit.edges[randomIndex].node
+    data.allContentfulTrainingKettlebell.edges[randomIndex].node
 
   console.log(randomTraining)
 
@@ -63,4 +63,4 @@ const TrainingCrossfit = () => {
   )
 }
 
-export default TrainingCrossfit
+export default TrainingKettlebell

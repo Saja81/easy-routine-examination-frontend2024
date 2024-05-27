@@ -12,9 +12,9 @@ import * as React from "react"
 import { useState, useEffect } from "react"
 
 import TrainingCrossfit from "../components/TrainingCrossfit"
+import TrainingKettlebell from "../components/TrainingKettlebell"
+import TrainingBarebell from "../components/TrainingBarebell"
 
-import dumbells_gray from "../images/dumbells_gray.png"
-import dumbells_blue from "../images/dumbells_blue.png"
 import barbell_gray from "../images/barbell_gray.png"
 import barbell_blue from "../images/barbell_blue.png"
 import kettlebell_gray from "../images/kettlebell_gray.png"
@@ -27,13 +27,13 @@ import Layout from "../components/Layout"
 const equipmentImages = {
   Crossfit: { gray: crossfit_gray, blue: crossfit_blue },
   Kettlebell: { gray: kettlebell_gray, blue: kettlebell_blue },
-  Dumbells: { gray: dumbells_gray, blue: dumbells_blue },
+  // Dumbells: { gray: dumbells_gray, blue: dumbells_blue },
   Barbell: { gray: barbell_gray, blue: barbell_blue },
 }
 
 const TrainingApp = () => {
   const [images, setImages] = useState({
-    Dumbells: dumbells_gray,
+    // Dumbells: dumbells_gray,
     Barbell: barbell_gray,
     Kettlebell: kettlebell_gray,
     Crossfit: crossfit_gray,
@@ -165,34 +165,35 @@ const TrainingApp = () => {
                       )}
 
                       {name === "Kettlebell" && (
-                        <>
-                          <Typography>How to do it</Typography>
-                          <Typography>
-                            Amrap 20 minutes, 5 exercises, 15 reps
-                          </Typography>
-                          <Box
-                            sx={{
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                            }}
-                          >
-                            <Divider sx={{ width: "50%", my: 2 }} />
-                          </Box>
-                          <Stack spacing={2}>
-                            <Typography>Swing (20 reps)</Typography>
-                            <Typography>Snatch (20 reps)</Typography>
-                            <Typography>Press (10 reps/arm)</Typography>
-                            <Typography>Goblet Squat (20 reps)</Typography>
-                            <Typography>TGU (10 reps/arm)</Typography>
-                          </Stack>
+                        <TrainingKettlebell />
+                        // <>
+                        //   <Typography>How to do it</Typography>
+                        //   <Typography>
+                        //     Amrap 20 minutes, 5 exercises, 15 reps
+                        //   </Typography>
+                        //   <Box
+                        //     sx={{
+                        //       display: "flex",
+                        //       justifyContent: "center",
+                        //       alignItems: "center",
+                        //     }}
+                        //   >
+                        //     <Divider sx={{ width: "50%", my: 2 }} />
+                        //   </Box>
+                        //   <Stack spacing={2}>
+                        //     <Typography>Swing (20 reps)</Typography>
+                        //     <Typography>Snatch (20 reps)</Typography>
+                        //     <Typography>Press (10 reps/arm)</Typography>
+                        //     <Typography>Goblet Squat (20 reps)</Typography>
+                        //     <Typography>TGU (10 reps/arm)</Typography>
+                        //   </Stack>
 
-                          <Button variant="outlined" sx={{ mt: 4 }}>
-                            Let's Go!
-                          </Button>
-                        </>
+                        //   <Button variant="outlined" sx={{ mt: 4 }}>
+                        //     Let's Go!
+                        //   </Button>
+                        // </>
                       )}
-                      {name === "Dumbells" && (
+                      {/* {name === "Dumbells" && (
                         <>
                           <Typography>How to do it</Typography>
                           <Typography>Styrkelyft: 5*5.</Typography>
@@ -217,34 +218,35 @@ const TrainingApp = () => {
                             Let's Go!
                           </Button>
                         </>
-                      )}
+                      )} */}
                       {name === "Barbell" && (
-                        <>
-                          <Typography>How to do it</Typography>
-                          <Typography>
-                            Amrap 20 minutes, 5 exercises, 15 reps
-                          </Typography>
-                          <Box
-                            sx={{
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                            }}
-                          >
-                            <Divider sx={{ width: "50%", my: 2 }} />
-                          </Box>
-                          <Stack spacing={2}>
-                            <Typography>Swing (20 reps)</Typography>
-                            <Typography>Snatch (20 reps)</Typography>
-                            <Typography>Press (10 reps/arm)</Typography>
-                            <Typography>Goblet Squat (20 reps)</Typography>
-                            <Typography>TGU (10 reps/arm)</Typography>
-                          </Stack>
+                        <TrainingBarebell />
+                        // <>
+                        //   <Typography>How to do it</Typography>
+                        //   <Typography>
+                        //     Amrap 20 minutes, 5 exercises, 15 reps
+                        //   </Typography>
+                        //   <Box
+                        //     sx={{
+                        //       display: "flex",
+                        //       justifyContent: "center",
+                        //       alignItems: "center",
+                        //     }}
+                        //   >
+                        //     <Divider sx={{ width: "50%", my: 2 }} />
+                        //   </Box>
+                        //   <Stack spacing={2}>
+                        //     <Typography>Swing (20 reps)</Typography>
+                        //     <Typography>Snatch (20 reps)</Typography>
+                        //     <Typography>Press (10 reps/arm)</Typography>
+                        //     <Typography>Goblet Squat (20 reps)</Typography>
+                        //     <Typography>TGU (10 reps/arm)</Typography>
+                        //   </Stack>
 
-                          <Button variant="outlined" sx={{ mt: 4 }}>
-                            Let's Go!
-                          </Button>
-                        </>
+                        //   <Button variant="outlined" sx={{ mt: 4 }}>
+                        //     Let's Go!
+                        //   </Button>
+                        // </>
                       )}
 
                       <Box
