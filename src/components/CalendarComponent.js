@@ -7,11 +7,22 @@ import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
+import { Dialog, DialogTitle, IconButton } from "@mui/material"
+import CloseIcon from "@mui/icons-material/Close"
+
+function CustomActionBar() {
+  return null
+}
 
 const CalendarComponent = () => {
   const [selectedDate, setSelectedDate] = useState(null)
   const [notes, setNotes] = useState({})
   const [inputValue, setInputValue] = useState("")
+  const [viewBookings, setViewBookings] = useState(false)
+
+  const handleToggleBookings = () => {
+    setViewBookings(!viewBookings)
+  }
 
   // Fetch notes from Netlify function on component mount
   useEffect(() => {
@@ -106,18 +117,49 @@ const CalendarComponent = () => {
         orientation="portrait"
         value={selectedDate}
         onChange={handleDateChange}
+        slots={{
+          actionBar: CustomActionBar,
+        }}
       />
+      <Button onClick={handleToggleBookings}>Se bokningar</Button>
+
+      <Dialog open={viewBookings} onClose={handleToggleBookings}>
+        <Box m={6}>
+          <DialogTitle>
+            Bokningar
+            <IconButton
+              aria-label="close"
+              onClick={handleToggleBookings}
+              sx={{
+                position: "absolute",
+                right: 8,
+                top: 8,
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </DialogTitle>
+          {/* <Box mt={2} p={2} border={1} borderRadius={4}> */}
+          {Object.entries(notes).map(([date, booking]) => (
+            <Typography key={date} variant="body1">
+              {date}: {JSON.stringify(booking)}
+            </Typography>
+          ))}
+          {/* </Box> */}
+        </Box>
+      </Dialog>
+
+      {/* <Button>Se bokningar</Button>
       <Box mt={2} p={2} border={1} borderRadius={4}>
         <Typography variant="h6" gutterBottom>
           Bokningar:
         </Typography>
         {Object.entries(notes).map(([date, booking]) => (
           <Typography key={date} variant="body1">
-            {/* {date}: {JSON.stringify(booking)} */}
             {date}: {JSON.stringify(booking)}
           </Typography>
         ))}
-      </Box>
+      </Box> */}
     </LocalizationProvider>
   )
 }
