@@ -1,18 +1,24 @@
-const fs = require("fs")
-const path = require("path")
+const { db } = require("./firebase")
 
 exports.handler = async function (event, context) {
-  // Path to your JSON file
-  const filePath = path.resolve(__dirname, "..", "notes.json")
+  try {
+    const notesSnapshot = await db.collection("notes").get()
+    const notes = {}
+    notesSnapshot.forEach(doc => {
+      notes[doc.id] = doc.data()
+    })
 
-  // Read the existing notes
-  let notes = {}
-  if (fs.existsSync(filePath)) {
-    notes = JSON.parse(fs.readFileSync(filePath, "utf-8"))
-  }
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify(notes),
+    return {
+      statusCode: 200,
+      body: JSON.stringify(notes),
+    }
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        error: "Failed to get notes",
+        details: error.message,
+      }),
+    }
   }
 }
