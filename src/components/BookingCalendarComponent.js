@@ -61,7 +61,7 @@ const CalendarComponent = () => {
 
   // Function to handle the booking button click
   const handleBookButtonClick = () => {
-    if (selectedDate) {
+    if (selectedDate && areAllFieldsFilled()) {
       const dateStr = selectedDate.format("YYYY-MM-DD")
       const summary = {
         date: dateStr,
@@ -81,6 +81,28 @@ const CalendarComponent = () => {
       })
       setSelectedDate(null)
       handleSavedBooking()
+      // Construct email subject
+      const emailSubject = `Bokning: ${dateStr}`
+
+      // Construct email body
+      const emailBody = `Ny bokning av skjuts:
+Datum: ${dateStr}
+Namn: ${inputValues.name}
+Tid för avgång: ${inputValues.time}
+Var: ${inputValues.location}`
+
+      // Construct mailto link
+      // const mailtoLink = `mailto:sandrajakobsson81@gmail.com?subject=${encodeURIComponent(
+      //   emailSubject
+      // )}&body=${encodeURIComponent(emailBody)}`
+
+      const mailtoLink = `mailto:silverzurfaren@hotmail.com
+      ?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(
+        emailBody
+      )}`
+
+      // Open default email client with pre-filled body
+      window.location.href = mailtoLink
     }
   }
 
