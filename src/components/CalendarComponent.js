@@ -25,19 +25,19 @@ const CalendarComponent = () => {
   }
 
   // Fetch notes from Netlify function on component mount
-  // useEffect(() => {
-  //   const fetchNotes = async () => {
-  //     try {
-  //       const response = await fetch("/.netlify/functions/getNotes")
-  //       const data = await response.json()
-  //       setNotes(data)
-  //       console.log("Notes fetched from Firestore:", data) // Consollogga värden från Firestore
-  //     } catch (error) {
-  //       console.error("Error fetching notes:", error)
-  //     }
-  //   }
-  //   fetchNotes()
-  // }, [])
+  useEffect(() => {
+    const fetchNotes = async () => {
+      try {
+        const response = await fetch("/.netlify/functions/getNotes")
+        const data = await response.json()
+        setNotes(data)
+        console.log("Notes fetched from Firestore:", data) // Consollogga värden från Firestore
+      } catch (error) {
+        console.error("Error fetching notes:", error)
+      }
+    }
+    fetchNotes()
+  }, [])
 
   const handleDateChange = newValue => {
     setSelectedDate(newValue)
@@ -51,6 +51,7 @@ const CalendarComponent = () => {
   }
 
   const handleBookButtonClick = async () => {
+    // Uppdatera localstorage med notes, villkor som kollar datum, och sätter valt datum. Detta händer fram till rad 60.
     if (selectedDate) {
       const dateStr = selectedDate.format("YYYY-MM-DD")
       const updatedNotes = {
@@ -58,7 +59,8 @@ const CalendarComponent = () => {
         [dateStr]: inputValue,
       }
       setNotes(updatedNotes)
-
+      // setNotes är usestaten som uppdaterar och på rad 63 skickas detta till localstorage.
+      //
       localStorage.setItem("notes", JSON.stringify(updatedNotes))
 
       console.log("Data to be saved to Firestore:", {
