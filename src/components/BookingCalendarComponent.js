@@ -129,17 +129,24 @@ const CalendarComponent = () => {
   // JSX structure for the calendar component
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Button onClick={handleToggleBookings}>Se alla bokningar</Button>
+      <Button
+        sx={{ my: "10px" }}
+        variant="contained"
+        color="success"
+        onClick={handleToggleBookings}
+      >
+        Se alla bokningar
+      </Button>
       <Stack>
         <Stack my={2}>
-          <Typography>1. Välj datum</Typography>
+          <Typography mb={2}>1. Välj datum</Typography>
           <DatePicker value={selectedDate} onChange={handleDateChange} />
         </Stack>
         {selectedDate && (
           <>
             <Stack my={2}>
               <Typography>2. Fyll i bokningsinformation</Typography>
-              <Box>
+              <Box mt={2}>
                 <TextField
                   label="Namn"
                   variant="outlined"
@@ -155,6 +162,7 @@ const CalendarComponent = () => {
                   name="time"
                   value={inputValues.time}
                   onChange={handleInputChange}
+                  sx={{ my: "5px" }}
                 />
                 <TextField
                   label="Var"
@@ -180,12 +188,23 @@ const CalendarComponent = () => {
 
       {bookingSaved && (
         <>
-          <Typography>Nu är det bokat! </Typography>
-          <Typography>
+          <Typography textAlign="center" my={2}>
+            Nu är det bokat!{" "}
+          </Typography>
+
+          <Typography textAlign="center" my={2} color="darkorange">
             Hjälp farsan att komma ihåg din boknining genom att skicka ett mail
             till honom:
           </Typography>
-          <Button onClick={handleMail}>Maila</Button>
+
+          <Button
+            sx={{ my: "20px", width: "100%" }}
+            variant="contained"
+            color="error"
+            onClick={handleMail}
+          >
+            Maila
+          </Button>
         </>
       )}
 
