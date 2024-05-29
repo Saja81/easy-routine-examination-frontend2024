@@ -162,7 +162,7 @@ const CalendarComponent = () => {
                   name="time"
                   value={inputValues.time}
                   onChange={handleInputChange}
-                  sx={{ my: "5px" }}
+                  sx={{ my: "10px" }}
                 />
                 <TextField
                   label="Var"
@@ -179,6 +179,7 @@ const CalendarComponent = () => {
               disabled={!areAllFieldsFilled()}
               color="primary"
               onClick={handleBookButtonClick}
+              sx={{ my: "10px" }}
             >
               Boka
             </Button>
