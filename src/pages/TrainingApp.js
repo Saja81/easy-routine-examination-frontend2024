@@ -123,7 +123,7 @@ const TrainingApp = () => {
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
-                    height="95vh"
+                    height="90vh"
                   >
                     <Stack
                       bgcolor="white"
