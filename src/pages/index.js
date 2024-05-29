@@ -11,6 +11,8 @@ import { db } from "../../firebaseConfig"
 const App = () => (
   <Container>
     <Layout>
+      {/* Utveckla färgerna med ljus bakgrundfärg för varje appkomponent + mörkare förg för texten.  */}
+      {/* Grönt Popupp fönster eller Appbar/meddelande fönster för bokning som kan kryssas bort.  */}
       <Grid container spacing={2} my={2}>
         <Grid item xs={12} md={4}>
           <Link className="card-link" to="/RecepiesApp">

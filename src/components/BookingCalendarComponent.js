@@ -21,6 +21,8 @@ const CalendarComponent = () => {
   const [bookingSaved, setBookingSaved] = useState(false)
   const [viewBookings, setViewBookings] = useState(false)
   const [bookings, setBookings] = useState([])
+  const [savedDateStr, setSavedDateStr] = useState("") // Ny state-variabel
+
   const [inputValues, setInputValues] = useState({
     name: "",
     time: "",
@@ -35,9 +37,6 @@ const CalendarComponent = () => {
   // Function to handle the notification when a booking is saved
   const handleSavedBooking = () => {
     setBookingSaved(true)
-    setTimeout(() => {
-      setBookingSaved(false)
-    }, 3000)
   }
 
   // Function to handle the change in selected date
@@ -73,37 +72,45 @@ const CalendarComponent = () => {
       // Add the new booking to the bookings array
       setBookings(prevBookings => [...prevBookings, summary])
 
-      // Reset input field values and selected date
-      setInputValues({
-        name: "",
-        time: "",
-        location: "",
-      })
-      setSelectedDate(null)
       handleSavedBooking()
-      // Construct email subject
-      const emailSubject = `Bokning: ${dateStr}`
-
-      // Construct email body
-      const emailBody = `Ny bokning av skjuts:
-Datum: ${dateStr}
-Namn: ${inputValues.name}
-Tid för avgång: ${inputValues.time}
-Var: ${inputValues.location}`
-
-      // Construct mailto link
-      // const mailtoLink = `mailto:sandrajakobsson81@gmail.com?subject=${encodeURIComponent(
-      //   emailSubject
-      // )}&body=${encodeURIComponent(emailBody)}`
-
-      const mailtoLink = `mailto:silverzurfaren@hotmail.com
-      ?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(
-        emailBody
-      )}`
-
-      // Open default email client with pre-filled body
-      window.location.href = mailtoLink
+      setSavedDateStr(dateStr)
     }
+  }
+
+  const handleMail = () => {
+    console.log("handleMail clicked")
+    setBookingSaved(false)
+    // Construct email subject
+    const emailSubject = `Bokning: ${savedDateStr}`
+
+    // Construct email body
+    const emailBody = `Ny bokning av skjuts:
+    Datum: ${savedDateStr}
+    Namn: ${inputValues.name}
+    Tid för avgång: ${inputValues.time}
+    Var: ${inputValues.location}`
+
+    // Construct mailto link
+    const mailtoLink = `mailto:sandrajakobsson81@gmail.com?subject=${encodeURIComponent(
+      emailSubject
+    )}&body=${encodeURIComponent(emailBody)}`
+
+    // const mailtoLink = `mailto:silverzurfaren@hotmail.com
+    // ?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(
+    //   emailBody
+    // )}`
+
+    // Open default email client with pre-filled body
+    window.location.href = mailtoLink
+
+    // Reset input field values and selected date
+    setInputValues({
+      name: "",
+      time: "",
+      location: "",
+    })
+    // Close input fields
+    setSelectedDate(null)
   }
 
   // Read saved booking values from localStorage when the component mounts
@@ -170,7 +177,17 @@ Var: ${inputValues.location}`
           </>
         )}
       </Stack>
-      {bookingSaved && <Typography>Nu är det bokat</Typography>}
+
+      {bookingSaved && (
+        <>
+          <Typography>Nu är det bokat! </Typography>
+          <Typography>
+            Hjälp farsan att komma ihåg din boknining genom att skicka ett mail
+            till honom:
+          </Typography>
+          <Button onClick={handleMail}>Maila</Button>
+        </>
+      )}
 
       <Dialog open={viewBookings} onClose={handleToggleBookings}>
         <Box m={6}>
