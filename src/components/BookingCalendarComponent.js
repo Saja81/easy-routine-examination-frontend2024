@@ -101,7 +101,7 @@ const CalendarComponent = () => {
     // )}`
 
     // Open default email client with pre-filled body
-    window.location.href = mailtoLink
+    window.open(mailtoLink, "_blank")
 
     // Reset input field values and selected date
     setInputValues({
