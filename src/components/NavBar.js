@@ -58,7 +58,7 @@ export default function NavBar() {
                 component="div"
                 sx={{ flexGrow: 1 }}
               >
-                ER
+                Easy Routine
               </Typography>
             </Box>
           </Link>

@@ -14,15 +14,15 @@ export default function CardComponentBooking() {
       <Card
         variant="outlined"
         sx={{
-          bgcolor: "#e09f3e",
-          boxShadow: "4px 4px 4px rgba(0, 0, 0, 0.1)",
+          bgcolor: "#D2B48C",
+          boxShadow: "4px 4px 8px rgba(0, 0, 0, 0.2)",
           "&:hover": {
-            backgroundColor: "#C78625",
+            backgroundColor: "#C8B192",
           },
         }}
       >
         <CardContent>
-          <Typography color="white" variant="h6" component="div">
+          <Typography color="#6E3B17" variant="h6" component="div">
             Farsan, Var är du? Vi ska åka nu!
           </Typography>
         </CardContent>
@@ -31,8 +31,8 @@ export default function CardComponentBooking() {
             className="button-link"
             size="small"
             sx={{
-              border: " solid 1px white",
-              color: "white",
+              border: " solid 1px #6E3B17",
+              color: "#6E3B17",
             }}
           >
             Boka
