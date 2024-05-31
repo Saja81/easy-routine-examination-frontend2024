@@ -3,66 +3,16 @@ const path = require("path")
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
-  // Define the template for individual projects
-  // const projectTemplate = path.resolve("./src/templates/ProjectPosts.js")
-
-  // Define the template for individual menyv1 posts
+  // Define the templates for individual meny posts
   const menyTemplateV1 = path.resolve("./src/templates/TemplateMenuWeekOne.js")
 
-  // Define the template for individual menyv2 posts
   const menyTemplateV2 = path.resolve("./src/templates/TemplateMenuWeekTwo.js")
 
-  // // Define the template for individual menyv2 posts
   const menyTemplateV3 = path.resolve(
     "./src/templates/TemplateMenuWeekThree.js"
   )
 
-  // // Define the template for individual menyv2 posts
   const menyTemplateV4 = path.resolve("./src/templates/TemplateMenuWeekFour.js")
-
-  // Fetch data from Contentful for projects
-  // const projectsResult = await graphql(`
-  //   {
-  //     allContentfulProjekt {
-  //       nodes {
-  //         titel
-  //         slug
-  //         kategori
-  //       }
-  //     }
-  //   }
-  // `)
-
-  // if (projectsResult.errors) {
-  //   reporter.panicOnBuild(
-  //     `There was an error loading your Contentful projects`,
-  //     projectsResult.errors
-  //   )
-  //   return
-  // }
-
-  // const projects = projectsResult.data.allContentfulProjekt.nodes
-
-  // if (projects.length > 0) {
-  //   projects.forEach(project => {
-  //     createPage({
-  //       path: `/${project.slug}/`,
-  //       component: projectTemplate,
-  //       context: {
-  //         slug: project.slug,
-  //       },
-  //     })
-
-  //     createPage({
-  //       path: `/${project.kategori.toLowerCase()}/`, // Lägg till kategori i sökvägen
-  //       component: projectTemplate,
-  //       context: {
-  //         slug: project.slug,
-  //         kategori: project.kategori, // Skicka med kategorin som en del av context
-  //       },
-  //     })
-  //   })
-  // }
 
   // Fetch data from Contentful for menyv1 posts
   const menyResultV1 = await graphql(`
@@ -166,7 +116,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   }
 
-  // Fetch data from Contentful for menyv3 posts
+  // Fetch data from Contentful for menyv4 posts
   const menyResultV4 = await graphql(`
     {
       allContentfulMenyV4 {
