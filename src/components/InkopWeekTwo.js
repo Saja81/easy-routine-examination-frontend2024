@@ -116,7 +116,7 @@ const Week2 = () => {
         <Stack direction="row" gap={2}>
           {renderList("Protein och mejeri", weekData.proteinMejeri.raw)}
           {renderList("Skafferi", weekData.skafferi.raw)}
-          {renderList("Kryddor", weekData.kryddor.raw)}
+          {/* {renderList("Kryddor", weekData.kryddor.raw)} */}
           {renderList("Frukt & Grönt", weekData.fruktGrnt.raw)}
         </Stack>
         <Button variant="outlined" onClick={handleDialogOpen}>
@@ -134,7 +134,12 @@ const Week2 = () => {
           }}
         >
           <DialogTitle>Inköpslista</DialogTitle>
-          <DialogContent>
+          <DialogContent
+            sx={{
+              maxHeight: "500px", // Justera höjden efter behov
+              overflowY: "auto",
+            }}
+          >
             {inköp.map((item, index) => (
               <Typography
                 key={index}

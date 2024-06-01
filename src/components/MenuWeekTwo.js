@@ -107,6 +107,7 @@ const Week2 = () => {
               <Stack
                 bgcolor="white"
                 borderRadius={2}
+                maxWidth="400px"
                 width="85%"
                 height="90%"
                 p={2}

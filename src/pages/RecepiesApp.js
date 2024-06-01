@@ -13,8 +13,8 @@ import Week4 from "../components/MenuWeekFour"
 
 const RecepiesApp = () => {
   // Hårdkoda weekNumber för testning
-  // const weekNumber = 4
-  const { weekNumber } = getCurrentWeekInfo()
+  const weekNumber = 2
+  // const { weekNumber } = getCurrentWeekInfo()
   // console.log("Veckonummer är: ", weekNumber)
   const { menuOne, menuTwo, menuThree, menuFour } = getMenusForWeek(weekNumber)
 
