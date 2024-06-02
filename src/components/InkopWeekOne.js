@@ -49,7 +49,7 @@
 
 //   const data = useStaticQuery(graphql`
 //     query MyQuery {
-//       allContentfulInkopVecka2 {
+//       allContentfulInkopVecka1 {
 //         edges {
 //           node {
 //             vecka
@@ -72,7 +72,7 @@
 //     }
 //   `)
 
-//   const weekData = data.allContentfulInkopVecka2.edges[0].node
+//   const weekData = data.allContentfulInkopVecka1.edges[0].node
 
 //   const renderList = (title, rawContent) => {
 //     const content = JSON.parse(rawContent)
