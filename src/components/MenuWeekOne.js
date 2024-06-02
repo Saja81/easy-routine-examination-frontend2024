@@ -1,7 +1,9 @@
 import * as React from "react"
-import { Box, Grid, Stack, Typography } from "@mui/material"
+import { useState } from "react"
+import { Box, Button, Grid, Modal, Stack, Typography } from "@mui/material"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import { sortingFunction, getCurrentWeekInfo } from "../utils/utils"
+import InkopWeekOne from "../components/InkopWeekOne"
 
 const Week1 = () => {
   const data = useStaticQuery(graphql`
@@ -30,7 +32,9 @@ const Week1 = () => {
     }
   `)
   const sortedPosts1 = data.menyV1.edges.sort(sortingFunction)
-  const { dayOfWeek, weekDays } = getCurrentWeekInfo()
+  const { dayOfWeek, weekDays, weekNumber } = getCurrentWeekInfo()
+  const [isModal, setIsModal] = useState(false)
+
   return (
     <Grid container spacing={2}>
       {sortedPosts1.reverse().map(edge => {
@@ -83,30 +87,54 @@ const Week1 = () => {
           flexDirection="column"
           width={{ xs: "120px", md: "200px" }}
           height={{ xs: "170px", md: "200px" }}
+          onClick={() => setIsModal(true)}
+          sx={{ cursor: "pointer" }}
         >
-          <Typography fontSize="12px" fontWeight="bold" mb={1}>
-            Inköp
-          </Typography>
-          <Stack direction="row" gap={2}>
-            <Stack direction="column">
-              <Typography fontSize="12px" sx={{ textDecoration: "underline" }}>
-                Färskvaror
-              </Typography>
-              <Typography fontSize="12px">Fläskfile</Typography>
-              <Typography fontSize="12px">Grädde</Typography>
-              <Typography fontSize="12px">Potatis</Typography>
-              <Typography fontSize="12px">Paprika</Typography>
-            </Stack>
-            <Stack direction="column">
-              <Typography fontSize="12px" sx={{ textDecoration: "underline" }}>
-                Skafferi
-              </Typography>
-              <Typography fontSize="12px">Fond</Typography>
-              <Typography fontSize="12px">Soja</Typography>
-              <Typography fontSize="12px">Övrigt</Typography>
-              <Typography fontSize="12px">Övrigt</Typography>
-            </Stack>
-          </Stack>
+          <Typography>Inköp</Typography>
+          <Typography>Vecka {weekNumber} </Typography>
+
+          <Modal
+            open={isModal}
+            onClose={() => setIsModal(false)}
+            aria-labelledby="modal-title"
+            aria-describedby="modal-description"
+          >
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              height="90vh"
+            >
+              <Stack
+                bgcolor="white"
+                borderRadius={2}
+                maxWidth="400px"
+                width="85%"
+                height="90%"
+                p={2}
+                textAlign="center"
+              >
+                <InkopWeekOne />
+                <Box
+                  display="flex"
+                  flexDirection="column"
+                  justifyContent="flex-end"
+                  alignItems="flex-end"
+                  height="100%"
+                  className="parent-element"
+                >
+                  <Button
+                    onClick={event => {
+                      event.stopPropagation()
+                      setIsModal(false)
+                    }}
+                  >
+                    STÄNG
+                  </Button>
+                </Box>
+              </Stack>
+            </Box>
+          </Modal>
         </Box>
       </Grid>
     </Grid>

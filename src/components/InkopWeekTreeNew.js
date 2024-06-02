@@ -1,6 +1,7 @@
 import * as React from "react"
 import { useState } from "react"
 import {
+  Box,
   Button,
   Dialog,
   DialogActions,
@@ -11,6 +12,7 @@ import {
   Typography,
 } from "@mui/material"
 import { graphql, useStaticQuery } from "gatsby"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 const Week2 = () => {
   const [inköp, setInköp] = useState([])
@@ -49,7 +51,7 @@ const Week2 = () => {
 
   const data = useStaticQuery(graphql`
     query MyQuery {
-      allContentfulInkopVecka2 {
+      allContentfulInkopVecka3 {
         edges {
           node {
             vecka
@@ -72,7 +74,7 @@ const Week2 = () => {
     }
   `)
 
-  const weekData = data.allContentfulInkopVecka2.edges[0].node
+  const weekData = data.allContentfulInkopVecka3.edges[0].node
 
   const renderList = (title, rawContent) => {
     const content = JSON.parse(rawContent)
