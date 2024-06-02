@@ -12,7 +12,7 @@ import {
 } from "@mui/material"
 import { graphql, useStaticQuery } from "gatsby"
 
-const Week2 = () => {
+const Week3 = () => {
   const [inköp, setInköp] = useState([])
   const [selectedItems, setSelectedItems] = useState([])
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -164,4 +164,4 @@ const Week2 = () => {
   )
 }
 
-export default Week2
+export default Week3

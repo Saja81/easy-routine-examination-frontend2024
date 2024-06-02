@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Box, Button, Grid, Modal, Stack, Typography } from "@mui/material"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import { sortingFunction, getCurrentWeekInfo } from "../utils/utils"
-import InkopWeekFour from "../components/InkopWeekFour"
+// import InkopWeekFour from "../components/InkopWeekFour"
 
 const Week4 = () => {
   const data = useStaticQuery(graphql`
@@ -112,7 +112,7 @@ const Week4 = () => {
                 p={2}
                 textAlign="center"
               >
-                <InkopWeekFour />
+                {/* <InkopWeekFour /> */}
                 <Box
                   display="flex"
                   flexDirection="column"
