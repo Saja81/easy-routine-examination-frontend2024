@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Card, Container, Typography } from "@mui/material"
 import Layout from "../components/Layout"
+import "../styles/index.css"
 
 import {
   getCurrentWeekInfo,

@@ -15,6 +15,7 @@ import MenuIcon from "@mui/icons-material/Menu"
 import CloseIcon from "@mui/icons-material/Close"
 import NavBarLinks from "./NavBarLinks"
 import { Link } from "gatsby"
+import "../styles/index.css"
 
 import { useState } from "react"
 
