@@ -75,30 +75,30 @@ module.exports = {
       },
     },
 
-    {
-      resolve: "gatsby-plugin-netlify",
-      options: {
-        redirects: [
-          {
-            fromPath: "/RecepiesApp",
-            toPath: "/RecepiesApp",
-            isPermanent: true,
-            statusCode: 301,
-          },
-          {
-            fromPath: "/TrainingApp",
-            toPath: "/TrainingApp",
-            isPermanent: true,
-            statusCode: 301,
-          },
-          {
-            fromPath: "/BookingApp",
-            toPath: "/BookingApp",
-            isPermanent: true,
-            statusCode: 301,
-          },
-        ],
-      },
-    },
+    // {
+    //   resolve: "gatsby-plugin-netlify",
+    //   options: {
+    //     redirects: [
+    //       {
+    //         fromPath: "/RecepiesApp",
+    //         toPath: "/RecepiesApp",
+    //         isPermanent: true,
+    //         statusCode: 301,
+    //       },
+    //       {
+    //         fromPath: "/TrainingApp",
+    //         toPath: "/TrainingApp",
+    //         isPermanent: true,
+    //         statusCode: 301,
+    //       },
+    //       {
+    //         fromPath: "/BookingApp",
+    //         toPath: "/BookingApp",
+    //         isPermanent: true,
+    //         statusCode: 301,
+    //       },
+    //     ],
+    //   },
+    // },
   ],
 }

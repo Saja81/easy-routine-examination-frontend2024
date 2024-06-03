@@ -8,3 +8,7 @@
 # gatsby-adapter-netlify start
 
 # gatsby-adapter-netlify end
+
+/RecepiesApp  /RecepiesApp  301
+/TrainingApp  /TrainingApp  301
+/BookingApp   /BookingApp   301
