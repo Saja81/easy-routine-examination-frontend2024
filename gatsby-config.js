@@ -74,6 +74,31 @@ module.exports = {
         accessToken: process.env.GATSBY_ACCESS_TOKEN,
       },
     },
-    // TO DO: Add token and ID
+
+    {
+      resolve: "gatsby-plugin-netlify",
+      options: {
+        redirects: [
+          {
+            fromPath: "/RecepiesApp",
+            toPath: "/RecepiesApp",
+            isPermanent: true,
+            statusCode: 301,
+          },
+          {
+            fromPath: "/TrainingApp",
+            toPath: "/TrainingApp",
+            isPermanent: true,
+            statusCode: 301,
+          },
+          {
+            fromPath: "/BookingApp",
+            toPath: "/BookingApp",
+            isPermanent: true,
+            statusCode: 301,
+          },
+        ],
+      },
+    },
   ],
 }
