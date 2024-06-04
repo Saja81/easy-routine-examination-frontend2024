@@ -13,13 +13,13 @@ import {
 import { graphql, useStaticQuery } from "gatsby"
 
 const Week3 = () => {
-  const [inköp, setInköp] = useState([])
+  const [inkop, setInkop] = useState([])
   const [selectedItems, setSelectedItems] = useState([])
   const [dialogOpen, setDialogOpen] = useState(false)
   const [shoppingList, setShoppingList] = useState([])
 
   const addToShoppingList = item => {
-    setInköp(prev => {
+    setInkop(prev => {
       const updatedList = [...prev, item]
       console.log("Inköpslistan:", updatedList)
       return updatedList
@@ -125,7 +125,7 @@ const Week3 = () => {
           onClose={handleDialogClose}
           sx={{
             position: "absolute",
-            top: 0,
+            top: "40px",
             left: 0,
             right: 0,
             bottom: "auto",
@@ -138,7 +138,7 @@ const Week3 = () => {
               overflowY: "auto",
             }}
           >
-            {inköp.map((item, index) => (
+            {inkop.map((item, index) => (
               <Typography
                 key={index}
                 sx={{
